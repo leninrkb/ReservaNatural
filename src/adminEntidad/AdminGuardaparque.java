@@ -10,4 +10,10 @@ public class AdminGuardaparque extends AdminEntidad {
         entidad.id = this.registro;
         return entidad;
     }
+
+    @Override
+    public void llenarEntidad(Entidad entidad) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+    }
 }

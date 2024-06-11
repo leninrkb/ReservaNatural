@@ -1,4 +1,3 @@
-import entidad.Entidad;
 import entidad.Visitante;
 
 public class App {
@@ -7,9 +6,11 @@ public class App {
         ReservaNatural reserva = new ReservaNatural();
         AdminEntidad adminVisitante = new AdminVisitante();
         Visitante e = (Visitante) adminVisitante.nuevaEntidad();
-        e.nombres = "Lenin Alexander";
-        adminVisitante.registrarEntidad(reserva.visitantes, e);
+        Visitante e2 = (Visitante) adminVisitante.nuevaEntidad();
+        adminVisitante.llenarEntidad(e);
+        adminVisitante.llenarEntidad(e2);
 
-        System.out.println(reserva.visitantes);
+        e.toString();
+        e2.toString();
     }
 }
