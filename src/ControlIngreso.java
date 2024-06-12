@@ -3,10 +3,26 @@ import java.util.Scanner;
 public class ControlIngreso {
     private Scanner in = new Scanner(System.in);
     private Integer[] coeficientes = {2,1,2,1,2,1,2,1,2};
+    private static ControlIngreso control;
 
+    private ControlIngreso() {}
+
+    public static ControlIngreso getInstance() {
+        if (control == null) {
+            control = new ControlIngreso();
+            return control;
+        }
+        return control;
+    }
 
     public String ingresoTexto(String msg){
         System.out.print("==> " + msg + " = ");
+        String s = in.nextLine();
+        return s;
+    }
+
+    public String ingresoTerminal(){
+        System.out.print("[SARN]# ");
         String s = in.nextLine();
         return s;
     }

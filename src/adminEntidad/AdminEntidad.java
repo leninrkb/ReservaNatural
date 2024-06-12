@@ -4,7 +4,7 @@ import entidad.Entidad;
 
 public abstract class AdminEntidad {
     protected Integer registro = 0;
-    protected ControlIngreso control = new ControlIngreso();
+    protected ControlIngreso control = ControlIngreso.getInstance();
 
     public abstract Entidad nuevaEntidad();
     public abstract void llenarEntidad(Entidad entidad);
