@@ -1,3 +1,5 @@
+import java.util.List;
+
 import entidad.Entidad;
 import entidad.Incidencia;
 
@@ -15,6 +17,12 @@ public class AdminIncidencia extends AdminEntidad {
     public void llenarEntidad(Entidad entidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+    }
+
+    @Override
+    public void listarEntidades(List<Entidad> entidades) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarEntidades'");
     }
     
 }

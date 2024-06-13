@@ -1,21 +1,92 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import entidad.Visita;
+import entidad.Visitante;
 
 public class Terminal {
-    ControlIngreso control = ControlIngreso.getInstance();
+    IOControl control = IOControl.getInstance();
+    ReservaNatural reserva = ReservaNatural.getInstance();
+
+    public void visitantes() {
+        AdminVisitante admin = AdminVisitante.getInstance();
+        Boolean salir = false;
+        while (!salir) {
+            String comando = control.ingresoTerminal("visitantes");
+            switch (comando) {
+                case "listar":
+                case "l":
+                    admin.listarEntidades(reserva.visitantes);
+                    break;
+
+                case "registrar":
+                case "r":
+                    Visitante v = (Visitante) admin.nuevaEntidad();
+                    admin.llenarEntidad(v);
+                    admin.registrarEntidad(reserva.visitantes, v);
+                    break;
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                    break;
+
+                case "help":
+                case "h":
+                    System.out.println("\nlistar / l");
+                    System.out.println("registrar / r");
+                    System.out.println("salir / x");
+                    System.out.println("help / h\n");
+                    break;
+            }
+
+        }
+    }
+
+    public void visitas() {
+        AdminVisita admin = AdminVisita.getInstance();
+        Boolean salir = false;
+        while (!salir) {
+            String comando = control.ingresoTerminal("visitas");
+            switch (comando) {
+                case "listar":
+                case "l":
+                    admin.listarEntidades(reserva.visitas);
+                    break;
+
+                case "registrar":
+                case "r":
+                    Visita v = (Visita) admin.nuevaEntidad();
+                    admin.llenarEntidad(v);
+                    admin.registrarEntidad(reserva.visitas, v);
+                    break;
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                    break;
+
+                case "help":
+                case "h":
+                    System.out.println("\nlistar / l");
+                    System.out.println("salir / x");
+                    System.out.println("help / h\n");
+                    break;
+            }
+        }
+    }
 
     public void inicio() {
-        Boolean terminar = false;
-        while (!terminar) {
-            String comando = control.ingresoTerminal();
+        Boolean salir = false;
+        while (!salir) {
+            String comando = control.ingresoTerminal("");
             switch (comando) {
                 case "visitantes":
                 case "v":
-                    System.out.println("buscar visitante");
-                    System.out.println("registrar visitante");
-                    System.out.println("registrar entrada");
-                    System.out.println("registrar salida");
-                    System.out.println("generar reporte de incidencia");
+                    visitantes();
+                    break;
+
+                case "visitas":
+                case "vs":
+                    visitas();
                     break;
 
                 case "guardaparques":
@@ -32,14 +103,20 @@ public class Terminal {
                     System.out.println("generar reporte de visitantes");
                     System.out.println("generar reporte de incidencias");
                     break;
-                
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                    break;
+
                 case "help":
                 case "h":
-                    System.out.println("** Comandos disponibles **");
-                    System.out.println("visitantes / v");
+                    System.out.println("\nvisitantes / v");
+                    System.out.println("visitas / vs");
                     System.out.println("guardaparques / g");
                     System.out.println("reportes / r");
-                    System.out.println("help / h");
+                    System.out.println("salir / x");
+                    System.out.println("help / h\n");
                     break;
                 default:
                     break;

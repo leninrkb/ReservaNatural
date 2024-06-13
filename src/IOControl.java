@@ -1,15 +1,17 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ControlIngreso {
+public class IOControl {
     private Scanner in = new Scanner(System.in);
     private Integer[] coeficientes = {2,1,2,1,2,1,2,1,2};
-    private static ControlIngreso control;
+    private static IOControl control;
 
-    private ControlIngreso() {}
+    private IOControl() {}
 
-    public static ControlIngreso getInstance() {
+    public static IOControl getInstance() {
         if (control == null) {
-            control = new ControlIngreso();
+            control = new IOControl();
             return control;
         }
         return control;
@@ -21,8 +23,8 @@ public class ControlIngreso {
         return s;
     }
 
-    public String ingresoTerminal(){
-        System.out.print("[SARN]# ");
+    public String ingresoTerminal(String msg){
+        System.out.print("[SARN@" + msg + "]# ");
         String s = in.nextLine();
         return s;
     }

@@ -1,7 +1,20 @@
+import java.time.LocalDateTime;
+import java.util.List;
+
 import entidad.Entidad;
 import entidad.Visita;
 
 public class AdminVisita extends AdminEntidad {
+    private static AdminVisita clase;
+    private AdminVisita() {}
+
+    public static AdminVisita getInstance() {
+        if (clase == null) {
+            clase = new AdminVisita();
+            return clase;
+        }
+        return clase;
+    }
 
     @Override
     public Entidad nuevaEntidad() {
@@ -13,8 +26,21 @@ public class AdminVisita extends AdminEntidad {
 
     @Override
     public void llenarEntidad(Entidad entidad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+        System.out.println("NUEVA VISITA");
+        Visita v = (Visita) entidad;
+        v.idVisitante = control.ingresoNumero("ID del visitante");
+        v.fechaHoraEntrada = LocalDateTime.now();
+    }
+
+    @Override
+    public void listarEntidades(List<Entidad> entidades) {
+        System.out.println("\nTODAS LAS VISITAS");
+        for (int i = 0; i < entidades.size(); i++) {
+            Visita v = (Visita) entidades.get(i);
+            v.toString();
+            System.out.println();
+        }
+        System.out.println();
     }
     
 }
