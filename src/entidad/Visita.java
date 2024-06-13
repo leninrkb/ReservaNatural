@@ -1,6 +1,5 @@
 package entidad;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Visita extends Entidad {
     public Integer idVisitante;

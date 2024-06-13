@@ -1,6 +1,6 @@
+package adminEntidad;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import entidad.Entidad;
 import entidad.Visita;
 

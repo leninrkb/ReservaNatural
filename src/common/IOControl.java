@@ -1,5 +1,4 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+package common;
 import java.util.Scanner;
 
 public class IOControl {

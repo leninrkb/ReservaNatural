@@ -1,4 +1,6 @@
-
+package common;
+import adminEntidad.AdminVisitante;
+import adminEntidad.AdminVisita;
 import entidad.Visita;
 import entidad.Visitante;
 

@@ -1,5 +1,4 @@
 package entidad;
-
 import java.time.format.DateTimeFormatter;
 
 public abstract class Entidad {

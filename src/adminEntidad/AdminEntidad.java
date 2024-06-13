@@ -1,5 +1,6 @@
+package adminEntidad;
 import java.util.List;
-
+import common.IOControl;
 import entidad.Entidad;
 
 public abstract class AdminEntidad {

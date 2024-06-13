@@ -1,5 +1,5 @@
+package adminEntidad;
 import java.util.List;
-
 import entidad.Entidad;
 import entidad.Visitante;
 
