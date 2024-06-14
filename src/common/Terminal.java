@@ -1,14 +1,49 @@
 package common;
 import adminEntidad.AdminVisitante;
 import adminEntidad.AdminGuardaparque;
+import adminEntidad.AdminIncidencia;
 import adminEntidad.AdminVisita;
 import entidad.Guardaparque;
+import entidad.Incidencia;
 import entidad.Visita;
 import entidad.Visitante;
 
 public class Terminal {
     IOControl control = IOControl.getInstance();
     ReservaNatural reserva = ReservaNatural.getInstance();
+
+    public void incidencias() {
+        AdminIncidencia admin = AdminIncidencia.getInstance();
+        Boolean salir = false;
+        while(!salir) {
+            String comando = control.ingresoTerminal("incidencias");
+            switch(comando) {
+                case "listar":
+                case "l":
+                    admin.listarEntidades(reserva.incidencias);
+                break;
+
+                case "registrar":
+                case "r":
+                    Incidencia inc = (Incidencia) admin.nuevaEntidad();
+                    admin.llenarEntidad(inc);
+                    admin.registrarEntidad(reserva.incidencias, inc);
+                break;
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                break;
+
+                case "help":
+                case "h":
+                    System.out.println("listar / l");
+                    System.out.println("salir / x");
+                    System.out.println("help / h");
+                break;
+            }
+        }
+    }
 
     public void guardaparques() {
         AdminGuardaparque admin = AdminGuardaparque.getInstance();
@@ -36,6 +71,7 @@ public class Terminal {
                 case "help":
                 case "h":
                     System.out.println("listar / l");
+                    System.out.println("registrar / r");
                     System.out.println("salir / x");
                     System.out.println("help / h");
                 break;
@@ -103,9 +139,10 @@ public class Terminal {
 
                 case "help":
                 case "h":
-                    System.out.println("\nlistar / l");
+                    System.out.println("listar / l");
+                    System.out.println("registrar / r");
                     System.out.println("salir / x");
-                    System.out.println("help / h\n");
+                    System.out.println("help / h");
                     break;
             }
         }
@@ -130,6 +167,11 @@ public class Terminal {
                 case "g":
                     guardaparques();
                     break;
+                
+                case "incidencias":
+                case "i":
+                    incidencias();
+                break;
 
                 case "reportes":
                 case "r":
@@ -147,6 +189,7 @@ public class Terminal {
                     System.out.println("\nvisitantes / v");
                     System.out.println("visitas / vs");
                     System.out.println("guardaparques / g");
+                    System.out.println("incidencias / i");
                     System.out.println("reportes / r");
                     System.out.println("salir / x");
                     System.out.println("help / h\n");
