@@ -1,5 +1,6 @@
 package common;
 import adminEntidad.AdminVisitante;
+import adminEntidad.AdminGuardaparque;
 import adminEntidad.AdminVisita;
 import entidad.Visita;
 import entidad.Visitante;
@@ -7,6 +8,32 @@ import entidad.Visitante;
 public class Terminal {
     IOControl control = IOControl.getInstance();
     ReservaNatural reserva = ReservaNatural.getInstance();
+
+    public void guardaparques() {
+        AdminGuardaparque admin = AdminGuardaparque.getInstance();
+        Boolean salir = false;
+        while(!salir) {
+            String comando = control.ingresoTerminal("guardaparques");
+            switch(comando) {
+                case "listar":
+                case "l":
+                    admin.listarEntidades(reserva.guardaparques);
+                break;
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                break;
+
+                case "help":
+                case "h":
+                    System.out.println("listar / l");
+                    System.out.println("salir / x");
+                    System.out.println("help / h");
+                break;
+            }
+        }
+    }
 
     public void visitantes() {
         AdminVisitante admin = AdminVisitante.getInstance();
@@ -93,11 +120,7 @@ public class Terminal {
 
                 case "guardaparques":
                 case "g":
-                    System.out.println("buscar guardaparque");
-                    System.out.println("buscar incidencia");
-                    System.out.println("registrar guardaparque");
-                    System.out.println("comando usuario");
-                    System.out.println("atender incidencia");
+                    guardaparques();
                     break;
 
                 case "reportes":
