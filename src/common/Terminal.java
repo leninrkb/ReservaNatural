@@ -30,6 +30,13 @@ public class Terminal {
                     admin.registrarEntidad(reserva.incidencias, inc);
                 break;
 
+                case "atender":
+                case "a":
+                    // localizo inc por ID
+                    // seteo la fecha de atencion
+                    admin.atenderIncidencia(reserva.incidencias);
+                break;
+
                 case "salir":
                 case "x":
                     salir = !salir;
@@ -38,6 +45,8 @@ public class Terminal {
                 case "help":
                 case "h":
                     System.out.println("listar / l");
+                    System.out.println("registrar / r");
+                    System.out.println("atender / a");
                     System.out.println("salir / x");
                     System.out.println("help / h");
                 break;
