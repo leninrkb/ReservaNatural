@@ -2,6 +2,7 @@ package common;
 import adminEntidad.AdminVisitante;
 import adminEntidad.AdminGuardaparque;
 import adminEntidad.AdminVisita;
+import entidad.Guardaparque;
 import entidad.Visita;
 import entidad.Visitante;
 
@@ -18,6 +19,13 @@ public class Terminal {
                 case "listar":
                 case "l":
                     admin.listarEntidades(reserva.guardaparques);
+                break;
+
+                case "registrar":
+                case "r":
+                    Guardaparque g = (Guardaparque) admin.nuevaEntidad();
+                    admin.llenarEntidad(g);
+                    admin.registrarEntidad(reserva.guardaparques, g);
                 break;
 
                 case "salir":

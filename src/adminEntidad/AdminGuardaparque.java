@@ -1,4 +1,5 @@
 package adminEntidad;
+import java.time.LocalDateTime;
 import java.util.List;
 import entidad.Entidad;
 import entidad.Guardaparque;
@@ -18,8 +19,12 @@ public class AdminGuardaparque extends AdminEntidad {
 
     @Override
     public void llenarEntidad(Entidad entidad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+        System.out.println("NUEVO GUARDAPARQUE");
+        Guardaparque g = (Guardaparque) entidad;
+        g.cedula = control.ingresoCedula("cedula");
+        g.nombres = control.ingresoTexto("nombres");
+        g.apellidos = control.ingresoTexto("apellidos");
+        g.fechaContratacion = LocalDateTime.now();
     }
 
     @Override
