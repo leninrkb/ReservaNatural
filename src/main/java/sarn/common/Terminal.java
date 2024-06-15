@@ -20,8 +20,9 @@ public class Terminal {
                 case "registrar":
                 case "r":
                     Incidencia inc = (Incidencia) admin.nuevaEntidad();
-                    admin.llenarEntidad(reserva, inc);
-                    admin.registrarEntidad(reserva.incidencias, inc);
+                    if (admin.llenarEntidad(reserva, inc)) {
+                        admin.registrarEntidad(reserva.incidencias, inc);
+                    }
                 break;
 
                 case "atender":

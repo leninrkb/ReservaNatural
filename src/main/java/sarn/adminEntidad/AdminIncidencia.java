@@ -35,19 +35,20 @@ public class AdminIncidencia extends AdminEntidad {
         return entidad;
     }
 
-    public void llenarEntidad(ReservaNatural reserva, Entidad entidad) {
+    public Boolean llenarEntidad(ReservaNatural reserva, Entidad entidad) {
         System.out.println("REPORTE DE NUEVA INCIDENCIA");
         Incidencia inc = (Incidencia) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante que reporta");
         Visitante v = (Visitante) validarEntidad(reserva.visitantes, idVisitante);
         if(v == null) {
             System.out.println("no se encontro el visitante " + idVisitante);
-            return;
+            return false;
         }
         inc.idVisitante = idVisitante;
         inc.fechaHoraReporte = LocalDateTime.now();
         inc.descripcion = control.ingresoTexto("Describa la incidencia");
         inc.anotaciones = control.ingresoTexto("Anotaciones que se requiera");
+        return true;
     }
 
     @Override
