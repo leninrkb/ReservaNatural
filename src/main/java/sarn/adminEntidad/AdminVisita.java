@@ -1,9 +1,9 @@
-package main.java.sarn.adminEntidad;
+package sarn.adminEntidad;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import main.java.sarn.common.ReservaNatural;
-import main.java.sarn.entidad.*;
+import sarn.common.*;
+import sarn.entidad.*;
 
 public class AdminVisita extends AdminEntidad {
     private static AdminVisita clase;

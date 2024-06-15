@@ -1,7 +1,7 @@
-package main.java.sarn.common;
+package sarn.common;
 import java.util.ArrayList;
 import java.util.List;
-import main.java.sarn.entidad.*;
+import sarn.entidad.*;
 
 public class ReservaNatural {
     private static ReservaNatural reservaNatural;

@@ -1,7 +1,7 @@
-package main.java.sarn.adminEntidad;
+package sarn.adminEntidad;
 import java.util.List;
-import main.java.sarn.common.*;
-import main.java.sarn.entidad.*;
+import sarn.common.*;
+import sarn.entidad.*;
 
 public abstract class AdminEntidad {
     protected Integer registro = 0;

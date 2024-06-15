@@ -1,7 +1,7 @@
-package main.java.sarn.common;
-import main.java.sarn.adminEntidad.*;
-import main.java.sarn.entidad.*;
-import main.java.sarn.reporte.Reporte;
+package sarn.common;
+import sarn.adminEntidad.*;
+import sarn.entidad.*;
+import sarn.reporte.Reporte;
 
 public class Terminal {
     IOControl control = IOControl.getInstance();

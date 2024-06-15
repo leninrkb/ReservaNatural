@@ -1,4 +1,4 @@
-package main.java.sarn.entidad;
+package sarn.entidad;
 import java.time.LocalDateTime;
 
 public class Incidencia extends Entidad {

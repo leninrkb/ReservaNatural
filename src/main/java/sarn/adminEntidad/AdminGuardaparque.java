@@ -1,7 +1,7 @@
-package main.java.sarn.adminEntidad;
+package sarn.adminEntidad;
 import java.time.LocalDateTime;
 import java.util.List;
-import main.java.sarn.entidad.*;
+import sarn.entidad.*;
 
 public class AdminGuardaparque extends AdminEntidad {
     private static AdminGuardaparque clase;

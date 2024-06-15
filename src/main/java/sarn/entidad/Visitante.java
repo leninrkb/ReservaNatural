@@ -1,4 +1,4 @@
-package main.java.sarn.entidad;
+package sarn.entidad;
 
 public class Visitante extends Persona {
     public String ruc;

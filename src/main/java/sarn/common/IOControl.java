@@ -1,4 +1,4 @@
-package main.java.sarn.common;
+package sarn.common;
 import java.util.Scanner;
 
 public class IOControl {

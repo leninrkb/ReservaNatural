@@ -1,4 +1,4 @@
-package main.java.sarn.entidad;
+package sarn.entidad;
 
 public abstract class Persona extends Entidad{
     public String cedula;

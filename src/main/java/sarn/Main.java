@@ -1,5 +1,5 @@
-package main.java.sarn;
-import main.java.sarn.common.Terminal;
+package sarn;
+import sarn.common.Terminal;
 
 public class Main {
     public static void main(String[] args) throws Exception {

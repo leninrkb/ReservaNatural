@@ -1,6 +1,6 @@
-package main.java.sarn.adminEntidad;
+package sarn.adminEntidad;
 import java.util.List;
-import main.java.sarn.entidad.*;
+import sarn.entidad.*;
 
 public class AdminVisitante extends AdminEntidad {
     private static AdminVisitante clase;
