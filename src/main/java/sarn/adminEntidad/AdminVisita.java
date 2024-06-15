@@ -1,6 +1,8 @@
 package main.java.sarn.adminEntidad;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import main.java.sarn.common.ReservaNatural;
 import main.java.sarn.entidad.*;
 
 public class AdminVisita extends AdminEntidad {
@@ -23,12 +25,18 @@ public class AdminVisita extends AdminEntidad {
         return entidad;
     }
 
-    @Override
-    public void llenarEntidad(Entidad entidad) {
+    public Boolean llenarEntidad(ReservaNatural reserva, Entidad entidad) {
         System.out.println("NUEVA VISITA");
         Visita v = (Visita) entidad;
-        v.idVisitante = control.ingresoNumero("ID del visitante");
+        Integer idVisitante = control.ingresoNumero("ID del visitante");
+        Visitante vt = (Visitante) validarEntidad(reserva.visitantes, idVisitante);
+        if (vt == null) {
+            System.out.println("no se encontro el visitante con ID " + idVisitante);
+            return false;
+        }
+        v.idVisitante = idVisitante;
         v.fechaHoraEntrada = LocalDateTime.now();
+        return true;
     }
 
     @Override
@@ -40,6 +48,12 @@ public class AdminVisita extends AdminEntidad {
             System.out.println();
         }
         System.out.println();
+    }
+
+    @Override
+    public void llenarEntidad(Entidad entidad) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
     }
     
 }

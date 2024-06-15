@@ -106,10 +106,10 @@ public class Terminal {
 
                 case "help":
                 case "h":
-                    System.out.println("\nlistar / l");
+                    System.out.println("listar / l");
                     System.out.println("registrar / r");
                     System.out.println("salir / x");
-                    System.out.println("help / h\n");
+                    System.out.println("help / h");
                     break;
             }
 
@@ -130,8 +130,10 @@ public class Terminal {
                 case "registrar":
                 case "r":
                     Visita v = (Visita) admin.nuevaEntidad();
-                    admin.llenarEntidad(v);
-                    admin.registrarEntidad(reserva.visitas, v);
+                    if (admin.llenarEntidad(reserva, v)) {
+                        admin.registrarEntidad(reserva.visitas, v);
+                        System.out.println("Nueva visita registrada con exito!");
+                    }
                     break;
 
                 case "salir":
@@ -177,8 +179,6 @@ public class Terminal {
 
                 case "reportes":
                 case "r":
-                    System.out.println("generar reporte de visitantes");
-                    System.out.println("generar reporte de incidencias");
                     break;
 
                 case "salir":
@@ -188,13 +188,13 @@ public class Terminal {
 
                 case "help":
                 case "h":
-                    System.out.println("\nvisitantes / v");
+                    System.out.println("visitantes / v");
                     System.out.println("visitas / vs");
                     System.out.println("guardaparques / g");
                     System.out.println("incidencias / i");
                     System.out.println("reportes / r");
                     System.out.println("salir / x");
-                    System.out.println("help / h\n");
+                    System.out.println("help / h");
                     break;
                 default:
                     break;
