@@ -11,14 +11,14 @@ public class Incidencia extends Entidad {
 
     public String getFechaHoraReporte() {
         if(fechaHoraReporte != null) {
-            return fechaHoraReporte.format(patronFecha);
+            return fechaHoraReporte.format(formatoFechaHora);
         }
         return "";
     }
 
     public String getFechaHoraAtencion() {
         if(fechaHoraAtencion != null) {
-            return fechaHoraAtencion.format(patronFecha);
+            return fechaHoraAtencion.format(formatoFechaHora);
         }
         return "";
     }

@@ -6,7 +6,7 @@ public class Guardaparque extends Persona {
 
     public String getFechaContratacion() {
         if(fechaContratacion != null) {
-            return fechaContratacion.format(patronFecha);
+            return fechaContratacion.format(formatoFechaHora);
         }
         return "";
     }

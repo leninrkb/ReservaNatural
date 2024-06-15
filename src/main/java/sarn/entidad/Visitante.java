@@ -7,7 +7,7 @@ public class Visitante extends Persona {
 
     @Override
     public String toString() {
-        System.out.println("--[VISITANTE]--\n"
+        System.out.println(""
         + "id        => " + this.id + "\n" 
         + "cedula    => " + this.cedula + "\n" 
         + "nombres   => " + this.nombres + "\n" 

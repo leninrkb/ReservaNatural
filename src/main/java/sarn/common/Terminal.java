@@ -1,10 +1,12 @@
 package main.java.sarn.common;
 import main.java.sarn.adminEntidad.*;
 import main.java.sarn.entidad.*;
+import main.java.sarn.reporte.Reporte;
 
 public class Terminal {
     IOControl control = IOControl.getInstance();
     ReservaNatural reserva = ReservaNatural.getInstance();
+    Reporte reporte = Reporte.getInstance();
 
     public void incidencias() {
         AdminIncidencia admin = AdminIncidencia.getInstance();
@@ -136,6 +138,11 @@ public class Terminal {
                     }
                     break;
 
+                case "registrar salida":
+                case "rs":
+                    admin.registrarSalida(reserva);
+                break;
+
                 case "salir":
                 case "x":
                     salir = !salir;
@@ -144,7 +151,8 @@ public class Terminal {
                 case "help":
                 case "h":
                     System.out.println("listar / l");
-                    System.out.println("registrar / r");
+                    System.out.println("registrar ingreso / r");
+                    System.out.println("registrar salida / rs");
                     System.out.println("salir / x");
                     System.out.println("help / h");
                     break;
@@ -152,8 +160,33 @@ public class Terminal {
         }
     }
 
-    public void inicio() {
+    public void reportes() {
         Boolean salir = false;
+        while(!salir) {
+            String comando = control.ingresoTerminal("reportes");
+            switch(comando) {
+                case "visitas dia":
+                case "vs d":
+                    reporte.visitantesPorDia(reserva);
+                break;
+
+                case "salir":
+                case "x":
+                    salir = !salir;
+                break;
+
+                case "help":
+                case "h":
+                    System.out.println("visitas dia / vs d");
+                    System.out.println("salir / x");
+                    System.out.println("help / h");
+                break;
+            }
+        }
+    }
+
+    public void inicio() {
+    Boolean salir = false;
         while (!salir) {
             String comando = control.ingresoTerminal("");
             switch (comando) {
@@ -179,6 +212,7 @@ public class Terminal {
 
                 case "reportes":
                 case "r":
+                    reportes();
                     break;
 
                 case "salir":

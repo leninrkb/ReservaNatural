@@ -8,13 +8,13 @@ public class Visita extends Entidad {
 
     public String getFechaHoraEntrada() {
         if (fechaHoraEntrada != null) {
-            return fechaHoraEntrada.format(patronFecha);
+            return fechaHoraEntrada.format(formatoFechaHora);
         }
         return "";
     }
     public String getFechaHoraSalida() {
         if (fechaHoraSalida != null) {
-            return fechaHoraSalida.format(patronFecha);
+            return fechaHoraSalida.format(formatoFechaHora);
         }
         return "";
     }

@@ -41,19 +41,29 @@ public class AdminVisita extends AdminEntidad {
 
     @Override
     public void listarEntidades(List<Entidad> entidades) {
-        System.out.println("\nTODAS LAS VISITAS");
+        System.out.println("TODAS LAS VISITAS REGISTRADAS");
         for (int i = 0; i < entidades.size(); i++) {
             Visita v = (Visita) entidades.get(i);
             v.toString();
             System.out.println();
         }
-        System.out.println();
     }
 
     @Override
     public void llenarEntidad(Entidad entidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+    }
+
+    public void registrarSalida(ReservaNatural reserva) {
+        Integer idVisita = control.ingresoNumero("ID de la visita");
+        Visita v = (Visita) validarEntidad(reserva.visitas, idVisita);
+        if (v == null) {
+            System.out.println("No se encontro la visita con ID " + idVisita);
+            return;
+        }
+        v.fechaHoraSalida = LocalDateTime.now();
+        System.out.println("Salida registrada con exito!");
     }
     
 }
