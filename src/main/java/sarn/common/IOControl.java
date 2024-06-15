@@ -1,10 +1,15 @@
 package sarn.common;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class IOControl {
     private Scanner in = new Scanner(System.in);
     private Integer[] coeficientes = {2,1,2,1,2,1,2,1,2};
     private static IOControl control;
+    public DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public DateTimeFormatter formatoFechaHora = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private IOControl() {}
 
@@ -87,5 +92,21 @@ public class IOControl {
             }
         }
         return cedula;
+    }
+
+    public LocalDateTime ingresoFechaHora(String msg) {
+        Boolean ok = false;
+        LocalDateTime fecha = null;
+        while(!ok) {
+            try {
+                System.out.print("==> " + msg + " = ");
+                String s = in.nextLine();
+                fecha = LocalDateTime.parse(s, formatoFechaHora);
+                ok = !ok;
+            } catch (Exception e) {
+                System.out.println("Debe ingresar la fecha en el formato indicado");
+            }
+        }
+        return fecha;
     }
 }

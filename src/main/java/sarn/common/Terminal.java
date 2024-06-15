@@ -1,4 +1,7 @@
 package sarn.common;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import sarn.adminEntidad.*;
 import sarn.entidad.*;
 import sarn.reporte.Reporte;
@@ -170,6 +173,19 @@ public class Terminal {
                     reporte.visitantesPorDia(reserva);
                 break;
 
+                case "visitas fecha":
+                case "vs f":
+                    String fecha = control.ingresoTexto("Fecha (yyyy-MM-dd)");
+                    reporte.visitasPorFecha(reserva, fecha);
+                break;
+
+                case "visitas rango fecha":
+                case "vs rf":
+                    LocalDateTime fechaInicio = control.ingresoFechaHora("Fecha inicio (yyyy-MM-dd HH:mm)");
+                    LocalDateTime fechaFin = control.ingresoFechaHora("Fecha fin (yyyy-MM-dd HH:mm)");
+                    reporte.incidenciasRangoFecha(reserva.incidencias, fechaInicio, fechaFin);
+                break;
+
                 case "salir":
                 case "x":
                     salir = !salir;
@@ -178,6 +194,8 @@ public class Terminal {
                 case "help":
                 case "h":
                     System.out.println("visitas dia / vs d");
+                    System.out.println("visitas fecha / vs f");
+                    System.out.println("visitas rangofecha / vs rf");
                     System.out.println("salir / x");
                     System.out.println("help / h");
                 break;
