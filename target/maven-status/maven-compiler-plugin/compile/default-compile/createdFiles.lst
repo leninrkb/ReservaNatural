@@ -1,0 +1,15 @@
+main/java/sarn/entidad/Incidencia.class
+main/java/sarn/common/ReservaNatural.class
+main/java/sarn/common/IOControl.class
+main/java/sarn/adminEntidad/AdminVisita.class
+main/java/sarn/Main.class
+main/java/sarn/entidad/Entidad.class
+main/java/sarn/entidad/Guardaparque.class
+main/java/sarn/adminEntidad/AdminVisitante.class
+main/java/sarn/entidad/Visita.class
+main/java/sarn/entidad/Visitante.class
+main/java/sarn/adminEntidad/AdminGuardaparque.class
+main/java/sarn/adminEntidad/AdminIncidencia.class
+main/java/sarn/adminEntidad/AdminEntidad.class
+main/java/sarn/common/Terminal.class
+main/java/sarn/entidad/Persona.class
