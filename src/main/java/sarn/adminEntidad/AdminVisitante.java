@@ -26,10 +26,14 @@ public class AdminVisitante extends AdminEntidad {
     public void llenarEntidad(Entidad e) {
         Visitante v = (Visitante) e;
         System.out.println("[NUEVO VISITANTE]");
-        v.cedula = this.control.ingresoCedula("ingrese su cedula");
+        Boolean opcional = true;
+        v.cedula = this.control.ingresoCedula("ingrese su cedula", opcional);
+        if(v.cedula == null) {
+            opcional = !opcional;
+        }
+        v.ruc = String.valueOf(this.control.ingresoNumero("ingrese su ruc", opcional));
         v.nombres = this.control.ingresoTexto("ingrese sus nombres");
         v.apellidos = this.control.ingresoTexto("ingrese sus apellidos");
-        v.ruc = String.valueOf(this.control.ingresoNumero("ingrese su ruc"));
         v.direccion = this.control.ingresoTexto("ingrese su direccion");
         v.telefono = String.valueOf(this.control.ingresoNumero("ingrese su telefono"));
     }
@@ -43,4 +47,6 @@ public class AdminVisitante extends AdminEntidad {
             System.out.println();
         }
     }
+
+
 }

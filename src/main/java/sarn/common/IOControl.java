@@ -34,19 +34,35 @@ public class IOControl {
     }
 
     public Integer ingresoNumero(String msg){
-        Boolean ok = false;
-        Integer n = null;
-        while(!ok) {
+        while(true) {
             try {
                 System.out.print("==> " + msg + " = ");
                 String s = in.nextLine();
-                n = Integer.valueOf(s);
-                ok = !ok;
+                if(s.trim().equals("") || s==null){
+                    return null;
+                }
+                Integer n = Integer.valueOf(s);
+                return n;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] solo puede ingresar un numero");
             }
         }
-        return n;
+    }
+
+    public Integer ingresoNumero(String msg, Boolean opcional){
+        Boolean ok = false;
+        while(!ok){
+            Integer n = ingresoNumero(msg);
+            if(n == null){
+                if(opcional){
+                    return null;
+                }
+                System.out.println("Este es un campo obligatorio");
+            }else{
+                return n;
+            }
+        }
+        return null;
     }
 
     public Boolean validarCedula(String cedula) {
@@ -78,20 +94,34 @@ public class IOControl {
     }
 
     public String ingresoCedula(String msg) {
-        String cedula = "";
-        Boolean ok = false;
-        while (!ok) {
-            cedula = String.valueOf(this.ingresoNumero(msg));
+        while (true) {
+            Integer n = this.ingresoNumero(msg);
+            if(n==null){
+                return null;
+            }
+            String cedula = String.valueOf(n);
             if(this.validarCedula(cedula)) {
                 return cedula;
             }
-            String respuesta = this.ingresoTexto("cedula invalida, intentar nuevamente? [s/n]");
-            if (!respuesta.equalsIgnoreCase("s")) {
-                cedula = "0000000000";
-                ok = !ok;
+            System.out.println("cedula invalida");
+        }
+    }
+
+    public String ingresoCedula(String msg, Boolean opcional) {
+        Boolean ok = false;
+        while(!ok){
+            String cedula = ingresoCedula(msg);
+            if(cedula == null){
+                if(opcional){
+                    return null;
+                }else{
+                    System.out.println("Este es un campo obligatorio");
+                }
+            }else{
+                return cedula;
             }
         }
-        return cedula;
+        return null;
     }
 
     public LocalDateTime ingresoFechaHora(String msg) {
