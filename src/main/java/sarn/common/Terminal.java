@@ -1,7 +1,5 @@
 package sarn.common;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import sarn.adminEntidad.*;
 import sarn.entidad.*;
 import sarn.reporte.Reporte;

@@ -4,6 +4,11 @@ public class Visitante extends Persona {
     public String ruc;
     public String direccion;
     public String telefono;
+    public Boolean enVisita = false;
+
+    public void cambioEstadoVisita() {
+        enVisita = !enVisita;
+    }
 
     @Override
     public String toString() {

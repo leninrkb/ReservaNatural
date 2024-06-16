@@ -34,6 +34,11 @@ public class AdminVisita extends AdminEntidad {
             System.out.println("no se encontro el visitante con ID " + idVisitante);
             return false;
         }
+        if(vt.enVisita){
+            System.out.println("El visitante " + vt.nombres + "ya se encuentra dentro de la Reserva");
+            return false;
+        }
+        vt.cambioEstadoVisita();
         v.idVisitante = idVisitante;
         v.fechaHoraEntrada = LocalDateTime.now();
         return true;
@@ -62,6 +67,8 @@ public class AdminVisita extends AdminEntidad {
             System.out.println("No se encontro la visita con ID " + idVisita);
             return;
         }
+        Visitante vt = (Visitante) validarEntidad(reserva.visitantes, v.idVisitante);
+        vt.cambioEstadoVisita();
         v.fechaHoraSalida = LocalDateTime.now();
         System.out.println("Salida registrada con exito!");
     }
