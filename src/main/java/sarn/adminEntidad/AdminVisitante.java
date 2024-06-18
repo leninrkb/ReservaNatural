@@ -46,8 +46,8 @@ public class AdminVisitante extends AdminPersona {
     @Override
     public void llenarEntidad(Entidad e) {
         Visitante v = (Visitante) e;
-        v.nombres = this.control.ingresoTexto("ingrese sus nombres");
-        v.apellidos = this.control.ingresoTexto("ingrese sus apellidos");
+        v.nombres = this.control.ingresoNombres("ingrese sus nombres");
+        v.apellidos = this.control.ingresoNombres("ingrese sus apellidos");
         v.direccion = this.control.ingresoTexto("ingrese su direccion");
         v.telefono = String.valueOf(this.control.ingresoNumero("ingrese su telefono"));
     }

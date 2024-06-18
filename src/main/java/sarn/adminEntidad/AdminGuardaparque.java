@@ -31,8 +31,8 @@ public class AdminGuardaparque extends AdminPersona {
     @Override
     public void llenarEntidad(Entidad entidad) {
         Guardaparque g = (Guardaparque) entidad;
-        g.nombres = control.ingresoTexto("nombres");
-        g.apellidos = control.ingresoTexto("apellidos");
+        g.nombres = control.ingresoNombres("nombres");
+        g.apellidos = control.ingresoNombres("apellidos");
         g.fechaContratacion = LocalDateTime.now();
     }
 

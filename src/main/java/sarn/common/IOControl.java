@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class IOControl {
     private Scanner in = new Scanner(System.in);
@@ -23,6 +24,18 @@ public class IOControl {
         System.out.print("==> " + msg + " = ");
         String s = in.nextLine();
         return s;
+    }
+
+    public String ingresoNombres(String msg){
+        while(true){
+            String nombres = ingresoTexto(msg).trim();
+            Matcher matcher = PatronCadena.textoSinNumeros.matcher(nombres);
+            if(matcher.matches()){
+                return nombres;
+            }else{
+                System.out.println("Formato invalido");
+            }
+        }
     }
 
     public String ingresoTerminal(String msg){
