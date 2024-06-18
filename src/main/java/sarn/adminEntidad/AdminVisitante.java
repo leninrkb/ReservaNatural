@@ -1,10 +1,13 @@
 package sarn.adminEntidad;
+
 import java.util.List;
 import sarn.entidad.*;
 
-public class AdminVisitante extends AdminEntidad {
+public class AdminVisitante extends AdminPersona {
     private static AdminVisitante clase;
-    private AdminVisitante() {}
+
+    private AdminVisitante() {
+    }
 
     public static AdminVisitante getInstance() {
         if (clase == null) {
@@ -22,16 +25,27 @@ public class AdminVisitante extends AdminEntidad {
         return entidad;
     }
 
+    public void llenarEntidad(Entidad e, List<Entidad> visitantes){
+        System.out.println("[NUEVO VISITANTE]");
+        Visitante v = (Visitante) e;
+        Boolean opcional = true;
+        while(true){
+            v.cedula = this.control.ingresoCedula("ingrese su cedula", opcional);
+            if(v.cedula == null) {
+                opcional = !opcional;
+                break;
+            }
+            if(cedulaUnica(v, visitantes)){
+                break;
+            }
+        }
+        v.ruc = String.valueOf(this.control.ingresoNumero("ingrese su ruc", opcional));
+        llenarEntidad(e);
+    }
+    
     @Override
     public void llenarEntidad(Entidad e) {
         Visitante v = (Visitante) e;
-        System.out.println("[NUEVO VISITANTE]");
-        Boolean opcional = true;
-        v.cedula = this.control.ingresoCedula("ingrese su cedula", opcional);
-        if(v.cedula == null) {
-            opcional = !opcional;
-        }
-        v.ruc = String.valueOf(this.control.ingresoNumero("ingrese su ruc", opcional));
         v.nombres = this.control.ingresoTexto("ingrese sus nombres");
         v.apellidos = this.control.ingresoTexto("ingrese sus apellidos");
         v.direccion = this.control.ingresoTexto("ingrese su direccion");
@@ -41,12 +55,11 @@ public class AdminVisitante extends AdminEntidad {
     @Override
     public void listarEntidades(List<Entidad> entidades) {
         System.out.println("VISITANTES REGISTRADOS");
-        for (int i = 0; i < entidades.size(); i += 1 ) {
+        for (int i = 0; i < entidades.size(); i += 1) {
             Visitante v = (Visitante) entidades.get(i);
             v.toString();
             System.out.println();
         }
     }
-
 
 }

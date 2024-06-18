@@ -1,4 +1,3 @@
-sarn/Datos.class
 sarn/common/Terminal.class
 sarn/adminEntidad/AdminGuardaparque.class
 sarn/entidad/Incidencia.class
@@ -6,9 +5,11 @@ sarn/adminEntidad/AdminVisitante.class
 sarn/entidad/Visita.class
 sarn/adminEntidad/AdminEntidad.class
 sarn/entidad/Persona.class
+sarn/common/FormatoFecha.class
 sarn/common/ReservaNatural.class
 sarn/entidad/Visitante.class
 sarn/reporte/Reporte.class
+sarn/persistencia/Persistencia.class
 sarn/common/IOControl.class
 sarn/entidad/Entidad.class
 sarn/entidad/Guardaparque.class

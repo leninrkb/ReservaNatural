@@ -103,9 +103,9 @@ public class Terminal {
                 case "registrar":
                 case "r":
                 case "2":
-                    Guardaparque g = (Guardaparque) admin.nuevaEntidad();
-                    admin.llenarEntidad(g);
-                    admin.registrarEntidad(reserva.guardaparques, g);
+                    Entidad e = admin.nuevaEntidad();
+                    admin.llenarEntidad(e, reserva.guardaparques);
+                    admin.registrarEntidad(reserva.guardaparques, e);
                     mostrarMenu = false;
                     break;
 
@@ -157,9 +157,9 @@ public class Terminal {
                 case "registrar":
                 case "r":
                 case "2":
-                    Visitante v = (Visitante) admin.nuevaEntidad();
-                    admin.llenarEntidad(v);
-                    admin.registrarEntidad(reserva.visitantes, v);
+                    Entidad e =  admin.nuevaEntidad();
+                    admin.llenarEntidad(e, reserva.visitantes);
+                    admin.registrarEntidad(reserva.visitantes, e);
                     mostrarMenu = false;
                     System.out.println();
                     break;

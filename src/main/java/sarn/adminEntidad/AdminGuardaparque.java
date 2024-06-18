@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import sarn.entidad.*;
 
-public class AdminGuardaparque extends AdminEntidad {
+public class AdminGuardaparque extends AdminPersona {
     private static AdminGuardaparque clase;
 
     private AdminGuardaparque(){}
@@ -16,11 +16,21 @@ public class AdminGuardaparque extends AdminEntidad {
         return entidad;
     }
 
+    public void llenarEntidad(Entidad e, List<Entidad> entidades){
+        System.out.println("NUEVO GUARDAPARQUE");
+        Guardaparque gd = (Guardaparque) e;
+        while(true){
+            gd.cedula = this.control.ingresoCedula("ingrese su cedula", false);
+            if(cedulaUnica(gd, entidades)){
+                break;
+            }
+        }
+        llenarEntidad(e);
+    }
+
     @Override
     public void llenarEntidad(Entidad entidad) {
-        System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque g = (Guardaparque) entidad;
-        g.cedula = control.ingresoCedula("cedula", false);
         g.nombres = control.ingresoTexto("nombres");
         g.apellidos = control.ingresoTexto("apellidos");
         g.fechaContratacion = LocalDateTime.now();

@@ -3,11 +3,12 @@
 /home/github/ReservaNatural/src/main/java/sarn/entidad/Visita.java
 /home/github/ReservaNatural/src/main/java/sarn/entidad/Entidad.java
 /home/github/ReservaNatural/src/main/java/sarn/entidad/Guardaparque.java
-/home/github/ReservaNatural/src/main/java/sarn/Datos.java
 /home/github/ReservaNatural/src/main/java/sarn/adminEntidad/AdminGuardaparque.java
 /home/github/ReservaNatural/src/main/java/sarn/common/IOControl.java
+/home/github/ReservaNatural/src/main/java/sarn/common/FormatoFecha.java
 /home/github/ReservaNatural/src/main/java/sarn/Main.java
 /home/github/ReservaNatural/src/main/java/sarn/entidad/Visitante.java
+/home/github/ReservaNatural/src/main/java/sarn/persistencia/Persistencia.java
 /home/github/ReservaNatural/src/main/java/sarn/entidad/Persona.java
 /home/github/ReservaNatural/src/main/java/sarn/common/Terminal.java
 /home/github/ReservaNatural/src/main/java/sarn/adminEntidad/AdminEntidad.java
