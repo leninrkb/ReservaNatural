@@ -1,27 +1,9 @@
 package sarn.entidad;
-import java.time.LocalDateTime;
 
-public class Incidencia extends Entidad {
+public class Incidencia extends Visita {
     public Integer idGuardaparque;
-    public Integer idVisitante;
     public String descripcion;
-    public LocalDateTime fechaHoraReporte;
-    public LocalDateTime fechaHoraAtencion;
     public String anotaciones;
-
-    public String getFechaHoraReporte() {
-        if(fechaHoraReporte != null) {
-            return fechaHoraReporte.format(formatoFechaHora);
-        }
-        return "";
-    }
-
-    public String getFechaHoraAtencion() {
-        if(fechaHoraAtencion != null) {
-            return fechaHoraAtencion.format(formatoFechaHora);
-        }
-        return "";
-    }
 
     @Override
     public String toString() {
@@ -30,10 +12,10 @@ public class Incidencia extends Entidad {
         + "ID Guardaparque   => " + idGuardaparque + "\n"
         + "ID Visitante      => " + idVisitante + "\n"
         + "Descripcion       => " + descripcion + "\n"
-        + "Fecha del reporte => " + getFechaHoraReporte() + "\n"
-        + "Fecha de atencion => " + getFechaHoraAtencion() + "\n"
+        + "Fecha del reporte => " + getFechaHoraInicia() + "\n"
+        + "Fecha de atencion => " + getFechaHoraTermina() + "\n"
         + "Anotaciones       => " + anotaciones
         );
-        return super.toString();
+        return "";
     }
 }

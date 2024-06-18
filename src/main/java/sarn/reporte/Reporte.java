@@ -44,7 +44,7 @@ public class Reporte {
         System.out.println("VISITANTES POR DIA");
         for (int i = 0; i < visitas.size(); i++) {
             Visita v = (Visita) visitas.get(i);
-            String fechaVisita = v.fechaHoraEntrada.format(formatoFecha);
+            String fechaVisita = v.fechaHoraInicia.format(formatoFecha);
             if (fechaVisita.equals(fechaHoy)) {
                 Integer idVisitante = v.idVisitante;
                 Visitante vt = (Visitante) admin.validarEntidad(reserva.visitantes, idVisitante);
@@ -67,7 +67,7 @@ public class Reporte {
         System.out.println("VISITAS POR FECHA: " + fecha);
         for (Entidad entidad : visitas) {
             Visita visita = (Visita) entidad;
-            String fechaVisita = visita.fechaHoraEntrada.format(formatoFecha);
+            String fechaVisita = visita.fechaHoraInicia.format(formatoFecha);
             if (fechaVisita.equals(fecha)) {
                 Integer idVisitante = visita.idVisitante;
                 Visitante visitante = (Visitante) admin.validarEntidad(reserva.visitantes, idVisitante);
@@ -78,7 +78,7 @@ public class Reporte {
                 Integer totalIncVisitante = totalIncidenciasVisitante(reserva.incidencias, idVisitante);
                 totalIncidencias += totalIncVisitante;
                 visitante.toString();
-                if(visita.fechaHoraSalida == null) {
+                if(visita.fechaHoraTermina == null) {
                     System.out.println("El visitante " + visitante.nombres + " no ha registrado la salida de la reserva");
                 }
                 System.out.println(visitante.nombres + " ha registrado " + totalIncVisitante + " incidencias");
@@ -106,11 +106,11 @@ public class Reporte {
         Integer total = 0;
         for (Entidad entidad : entidades) {
             Incidencia inc = (Incidencia) entidad;
-            if(inc.fechaHoraAtencion == null) {
+            if(inc.fechaHoraInicia == null) {
                 continue;
             }
-            Boolean q1 = inc.fechaHoraAtencion.isAfter(fechaInicio);
-            Boolean q2 = inc.fechaHoraAtencion.isBefore(fechaFin);
+            Boolean q1 = inc.fechaHoraTermina.isAfter(fechaInicio);
+            Boolean q2 = inc.fechaHoraTermina.isBefore(fechaFin);
             if(q1 && q2) {
                 inc.toString();
                 System.out.println();

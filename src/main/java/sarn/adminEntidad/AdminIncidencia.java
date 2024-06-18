@@ -23,7 +23,7 @@ public class AdminIncidencia extends AdminEntidad {
             return;
         }
         inc.idGuardaparque = idGuardaparque;
-        inc.fechaHoraAtencion = LocalDateTime.now();
+        inc.fechaHoraTermina = LocalDateTime.now();
         System.out.println("Incidencia atendida con exito!");
     }
 
@@ -45,7 +45,7 @@ public class AdminIncidencia extends AdminEntidad {
             return false;
         }
         inc.idVisitante = idVisitante;
-        inc.fechaHoraReporte = LocalDateTime.now();
+        inc.fechaHoraInicia = LocalDateTime.now();
         inc.descripcion = control.ingresoTexto("Describa la incidencia");
         inc.anotaciones = control.ingresoTexto("Anotaciones que se requiera");
         return true;

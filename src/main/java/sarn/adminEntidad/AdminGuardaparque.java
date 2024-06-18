@@ -20,7 +20,7 @@ public class AdminGuardaparque extends AdminEntidad {
     public void llenarEntidad(Entidad entidad) {
         System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque g = (Guardaparque) entidad;
-        g.cedula = control.ingresoCedula("cedula");
+        g.cedula = control.ingresoCedula("cedula", false);
         g.nombres = control.ingresoTexto("nombres");
         g.apellidos = control.ingresoTexto("apellidos");
         g.fechaContratacion = LocalDateTime.now();

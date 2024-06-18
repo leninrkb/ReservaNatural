@@ -40,7 +40,7 @@ public class AdminVisita extends AdminEntidad {
         }
         vt.cambioEstadoVisita();
         v.idVisitante = idVisitante;
-        v.fechaHoraEntrada = LocalDateTime.now();
+        v.fechaHoraInicia = LocalDateTime.now();
         return true;
     }
 
@@ -69,7 +69,7 @@ public class AdminVisita extends AdminEntidad {
         }
         Visitante vt = (Visitante) validarEntidad(reserva.visitantes, v.idVisitante);
         vt.cambioEstadoVisita();
-        v.fechaHoraSalida = LocalDateTime.now();
+        v.fechaHoraTermina = LocalDateTime.now();
         System.out.println("Salida registrada con exito!");
     }
     

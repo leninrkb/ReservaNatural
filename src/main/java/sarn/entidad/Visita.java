@@ -3,18 +3,18 @@ import java.time.LocalDateTime;
 
 public class Visita extends Entidad {
     public Integer idVisitante;
-    public LocalDateTime fechaHoraEntrada;
-    public LocalDateTime fechaHoraSalida;
+    public LocalDateTime fechaHoraInicia;
+    public LocalDateTime fechaHoraTermina;
 
-    public String getFechaHoraEntrada() {
-        if (fechaHoraEntrada != null) {
-            return fechaHoraEntrada.format(formatoFechaHora);
+    public String getFechaHoraInicia() {
+        if (fechaHoraInicia != null) {
+            return fechaHoraInicia.format(formatoFechaHora);
         }
         return "";
     }
-    public String getFechaHoraSalida() {
-        if (fechaHoraSalida != null) {
-            return fechaHoraSalida.format(formatoFechaHora);
+    public String getFechaHoraTermina() {
+        if (fechaHoraTermina != null) {
+            return fechaHoraTermina.format(formatoFechaHora);
         }
         return "";
     }
@@ -24,9 +24,9 @@ public class Visita extends Entidad {
         System.out.println("" 
         + "ID Visita => " + id + "\n"
         + "ID Visitante => " + idVisitante + "\n"
-        + "Fecha de Entrada => " + getFechaHoraEntrada() + "\n"
-        + "Fecha de Salida => " + getFechaHoraSalida()
+        + "Fecha de Entrada => " + getFechaHoraInicia() + "\n"
+        + "Fecha de Salida => " + getFechaHoraTermina()
         );
-        return super.toString();
+        return "";
     }
 }
