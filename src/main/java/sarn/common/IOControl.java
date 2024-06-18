@@ -2,8 +2,12 @@ package sarn.common;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
+
+import sarn.adminEntidad.AdminEntidad;
+import sarn.entidad.Entidad;
 
 public class IOControl {
     private Scanner in = new Scanner(System.in);
@@ -163,6 +167,17 @@ public class IOControl {
             }
         }
         return respuesta.equals("s");
+    }
+
+    public void cargarRegistroAdmin(AdminEntidad admin, List<Entidad> entidades){
+        try{
+            if(admin.cargarRegistro){
+                admin.registro = entidades.get(entidades.size()-1).id;
+                admin.cargarRegistro = false;
+            }
+        }catch(Exception e){
+            System.out.println("Ningun registro por cargar");
+        }
     }
     
 }

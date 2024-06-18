@@ -4,8 +4,9 @@ import sarn.common.*;
 import sarn.entidad.*;
 
 public abstract class AdminEntidad {
-    protected Integer registro = 0;
+    public Integer registro = 0;
     protected IOControl control = IOControl.getInstance();
+    public boolean cargarRegistro = false;
 
     public abstract Entidad nuevaEntidad();
     public abstract void llenarEntidad(Entidad entidad);
@@ -14,7 +15,7 @@ public abstract class AdminEntidad {
     public Boolean eliminarEntidad(Integer id, List<Entidad> entidades){
         for (int i = 0; i < entidades.size(); i++) {
             Entidad current = entidades.get(i);
-            if(current.id == id){
+            if(current.id.equals(id)){
                 entidades.remove(i);
                 return true;
             }
@@ -26,7 +27,7 @@ public abstract class AdminEntidad {
         Entidad valido = null;
         for (int i = 0; i < entidades.size(); i++) {
             Entidad e = entidades.get(i);
-            if(e.id == id) {
+            if(e.id.equals(id)) {
                 valido = e;
                 break;
             }

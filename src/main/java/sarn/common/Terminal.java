@@ -14,6 +14,7 @@ public class Terminal {
 
     public void incidencias() {
         AdminIncidencia admin = AdminIncidencia.getInstance();
+        control.cargarRegistroAdmin(admin, reserva.incidencias);
         Boolean salir = false;
         boolean mostrarMenu = true;
 
@@ -25,7 +26,7 @@ public class Terminal {
                 System.out.println("3. Atender incidencia                                     (a)");
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
-                System.out.println("================================================================\n");     
+                System.out.println("================================================================\n");
             }
 
             String comando = control.ingresoTerminal("incidencias");
@@ -78,6 +79,7 @@ public class Terminal {
 
     public void guardaparques() {
         AdminGuardaparque admin = AdminGuardaparque.getInstance();
+        control.cargarRegistroAdmin(admin, reserva.guardaparques);
         Boolean salir = false;
         boolean mostrarMenu = true;
 
@@ -88,7 +90,7 @@ public class Terminal {
                 System.out.println("2. Registrar nuevo guardaparque                            (r)");
                 System.out.println("3. Salir                                                   (x)");
                 System.out.println("4. Mostrar ayuda                                           (h)");
-                System.out.println("=================================================================\n");         
+                System.out.println("=================================================================\n");
             }
 
             String comando = control.ingresoTerminal("guardaparques");
@@ -132,6 +134,7 @@ public class Terminal {
 
     public void visitantes() {
         AdminVisitante admin = AdminVisitante.getInstance();
+        control.cargarRegistroAdmin(admin, reserva.visitantes);
         Boolean salir = false;
         boolean mostrarMenu = true;
         while (!salir) {
@@ -157,7 +160,7 @@ public class Terminal {
                 case "registrar":
                 case "r":
                 case "2":
-                    Entidad e =  admin.nuevaEntidad();
+                    Entidad e = admin.nuevaEntidad();
                     admin.llenarEntidad(e, reserva.visitantes);
                     admin.registrarEntidad(reserva.visitantes, e);
                     mostrarMenu = false;
@@ -173,8 +176,9 @@ public class Terminal {
                 case "eliminar":
                 case "el":
                 case "5":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"), reserva.visitantes);
-                    if(eliminado){
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"),
+                            reserva.visitantes);
+                    if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
                     }
                     break;
@@ -198,6 +202,7 @@ public class Terminal {
 
     public void visitas() {
         AdminVisita admin = AdminVisita.getInstance();
+        control.cargarRegistroAdmin(admin, reserva.visitas);
         Boolean salir = false;
         boolean mostrarMenu = true;
 
@@ -333,8 +338,16 @@ public class Terminal {
 
     public void inicio() {
         Boolean salir = false;
-        boolean mostrarMenu = true;
-        persistencia.cargarEstado(reserva);
+        Boolean mostrarMenu = true;
+        Boolean cargarRegistro = persistencia.cargarEstado(reserva);
+        AdminVisita adminVisita = AdminVisita.getInstance();
+        adminVisita.cargarRegistro = cargarRegistro;
+        AdminVisitante adminVisitante = AdminVisitante.getInstance();
+        adminVisitante.cargarRegistro = cargarRegistro;
+        AdminGuardaparque adminGuardaparque = AdminGuardaparque.getInstance();
+        adminGuardaparque.cargarRegistro = cargarRegistro;
+        AdminIncidencia adminIncidencia = AdminIncidencia.getInstance();
+        adminIncidencia.cargarRegistro = cargarRegistro;
         reserva = ReservaNatural.getInstance();
         while (!salir) {
             if (mostrarMenu) {
@@ -346,7 +359,7 @@ public class Terminal {
                 System.out.println("5. Generar reportes                               (r)");
                 System.out.println("6. Salir                                          (x)");
                 System.out.println("7. Mostrar ayuda                                  (h)");
-                System.out.println("=======================================================\n"); 
+                System.out.println("=======================================================\n");
             }
 
             String comando = control.ingresoTerminal("");
@@ -389,7 +402,7 @@ public class Terminal {
                         persistencia.guardarEstado(reserva);
                         System.out.println("Saliendo del programa... ¡Hasta luego!");
                     }
-                break;
+                    break;
 
                 case "help":
                 case "h":
