@@ -1,6 +1,8 @@
 package sarn.entidad;
 import java.time.LocalDateTime;
 
+import sarn.common.FormatoFecha;
+
 public class Visita extends Entidad {
     public Integer idVisitante;
     public LocalDateTime fechaHoraInicia;
@@ -8,13 +10,13 @@ public class Visita extends Entidad {
 
     public String getFechaHoraInicia() {
         if (fechaHoraInicia != null) {
-            return fechaHoraInicia.format(formatoFechaHora);
+            return fechaHoraInicia.format(FormatoFecha.formatoFechaHora);
         }
         return "";
     }
     public String getFechaHoraTermina() {
         if (fechaHoraTermina != null) {
-            return fechaHoraTermina.format(formatoFechaHora);
+            return fechaHoraTermina.format(FormatoFecha.formatoFechaHora);
         }
         return "";
     }

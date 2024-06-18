@@ -3,12 +3,14 @@ package sarn.common;
 import java.time.LocalDateTime;
 import sarn.adminEntidad.*;
 import sarn.entidad.*;
+import sarn.persistencia.Persistencia;
 import sarn.reporte.Reporte;
 
 public class Terminal {
     IOControl control = IOControl.getInstance();
     ReservaNatural reserva = ReservaNatural.getInstance();
     Reporte reporte = Reporte.getInstance();
+    Persistencia persistencia = Persistencia.getInstance();
 
     public void incidencias() {
         AdminIncidencia admin = AdminIncidencia.getInstance();
@@ -322,7 +324,8 @@ public class Terminal {
     public void inicio() {
         Boolean salir = false;
         boolean mostrarMenu = true;
-        
+        persistencia.cargarEstado(reserva);
+        reserva = ReservaNatural.getInstance();
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n====================== MENÚ PRINCIPAL =================");
@@ -371,10 +374,11 @@ public class Terminal {
                 case "salir":
                 case "x":
                 case "6":
-                if (control.confirmacionSalida("¿Está seguro que desea salir del programa? (s/n) ")) {
-                    salir = true;
-                    System.out.println("Saliendo del programa... ¡Hasta luego!");
-                }
+                    salir = control.confirmacionSalida("¿Está seguro que desea salir del programa? (s/n) ");
+                    if (salir) {
+                        persistencia.guardarEstado(reserva);
+                        System.out.println("Saliendo del programa... ¡Hasta luego!");
+                    }
                 break;
 
                 case "help":

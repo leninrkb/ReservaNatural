@@ -1,12 +1,14 @@
 package sarn.entidad;
 import java.time.LocalDateTime;
 
+import sarn.common.FormatoFecha;
+
 public class Guardaparque extends Persona {
     public LocalDateTime fechaContratacion;
 
     public String getFechaContratacion() {
         if(fechaContratacion != null) {
-            return fechaContratacion.format(formatoFechaHora);
+            return fechaContratacion.format(FormatoFecha.formatoFechaHora);
         }
         return "";
     }

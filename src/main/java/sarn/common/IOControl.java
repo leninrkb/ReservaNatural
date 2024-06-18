@@ -8,8 +8,6 @@ public class IOControl {
     private Scanner in = new Scanner(System.in);
     private Integer[] coeficientes = {2,1,2,1,2,1,2,1,2};
     private static IOControl control;
-    public DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public DateTimeFormatter formatoFechaHora = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private IOControl() {}
 
@@ -131,7 +129,7 @@ public class IOControl {
             try {
                 System.out.print("==> " + msg + " = ");
                 String s = in.nextLine();
-                fecha = LocalDateTime.parse(s, formatoFechaHora);
+                fecha = LocalDateTime.parse(s, FormatoFecha.formatoFechaHora);
                 ok = !ok;
             } catch (Exception e) {
                 System.out.println("Debe ingresar la fecha en el formato indicado");

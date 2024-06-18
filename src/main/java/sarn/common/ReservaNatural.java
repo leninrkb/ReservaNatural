@@ -21,4 +21,8 @@ public class ReservaNatural implements Serializable{
         }
         return clase;
     }
+
+    public static void setInstance(ReservaNatural rserva) {
+        clase = rserva;
+    }
 }
