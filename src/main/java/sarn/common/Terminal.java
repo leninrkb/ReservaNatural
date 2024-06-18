@@ -26,6 +26,7 @@ public class Terminal {
                 System.out.println("3. Atender incidencia                                     (a)");
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
+                System.out.println("6. Eliminar incidencia                                    (el)");
                 System.out.println("================================================================\n");
             }
 
@@ -61,6 +62,16 @@ public class Terminal {
                     salir = !salir;
                     break;
 
+                case "eliminar":
+                case "el":
+                case "6":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la incidencia a eliminar"),
+                            reserva.visitantes);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    break;
+
                 case "help":
                 case "h":
                 case "5":
@@ -90,6 +101,7 @@ public class Terminal {
                 System.out.println("2. Registrar nuevo guardaparque                            (r)");
                 System.out.println("3. Salir                                                   (x)");
                 System.out.println("4. Mostrar ayuda                                           (h)");
+                System.out.println("5. Eliminar Guardaparque                                   (el)");
                 System.out.println("=================================================================\n");
             }
 
@@ -117,6 +129,16 @@ public class Terminal {
                     salir = !salir;
                     break;
 
+                case "eliminar":
+                case "el":
+                case "5":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del guardaparque a eliminar"),
+                            reserva.visitantes);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    break;
+
                 case "help":
                 case "h":
                 case "4":
@@ -125,6 +147,7 @@ public class Terminal {
                     System.out.println("2. r       - Registrar nuevo guardaparque");
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
+                    System.out.println("5. el      - Eliminar guardaparque");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -144,6 +167,7 @@ public class Terminal {
                 System.out.println("2. Registrar nuevo visitante                              (r)");
                 System.out.println("3. Salir                                                  (x)");
                 System.out.println("4. Mostrar ayuda                                          (h)");
+                System.out.println("5. Eliminar visitante                                     (el)");
                 System.out.println("================================================================\n");
             }
 
@@ -176,7 +200,7 @@ public class Terminal {
                 case "eliminar":
                 case "el":
                 case "5":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"),
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a eliminar"),
                             reserva.visitantes);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
@@ -189,9 +213,9 @@ public class Terminal {
                     System.out.println("\n======= AYUDA ======================");
                     System.out.println("1. l       - Listar visitantes");
                     System.out.println("2. r       - Registrar nuevo visitante");
-                    System.out.println("5. el       - Eliminar visitante");
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
+                    System.out.println("5. el      - Eliminar visitante");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -214,6 +238,7 @@ public class Terminal {
                 System.out.println("3. Registrar salida de visita                             (rs)");
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
+                System.out.println("5. Eliminar visita                                        (el)");
                 System.out.println("================================================================\n");
 
             }
@@ -254,6 +279,16 @@ public class Terminal {
                     salir = !salir;
                     break;
 
+                case "eliminar":
+                case "el":
+                case "6":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la visita a eliminar"),
+                            reserva.visitantes);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    break;
+
                 case "help":
                 case "h":
                 case "5":
@@ -263,6 +298,7 @@ public class Terminal {
                     System.out.println("3. rs           - Registrar salida de visita");
                     System.out.println("4. x            - Salir");
                     System.out.println("5. h            - Mostrar ayuda");
+                    System.out.println("6. el           - Eliminar visita");
                     System.out.println("=============================================\n");
                     mostrarMenu = false;
                     break;

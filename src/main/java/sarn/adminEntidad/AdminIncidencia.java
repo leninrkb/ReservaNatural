@@ -36,6 +36,7 @@ public class AdminIncidencia extends AdminEntidad {
     }
 
     public Boolean llenarEntidad(ReservaNatural reserva, Entidad entidad) {
+        System.out.println();
         System.out.println("REPORTE DE NUEVA INCIDENCIA");
         Incidencia inc = (Incidencia) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante que reporta");
@@ -53,6 +54,7 @@ public class AdminIncidencia extends AdminEntidad {
 
     @Override
     public void listarEntidades(List<Entidad> entidades) {
+        System.out.println();
         System.out.println("INCIDENCIAS REGISTRADAS");
         for (int i = 0; i < entidades.size(); i++) {
             Incidencia e = (Incidencia) entidades.get(i);

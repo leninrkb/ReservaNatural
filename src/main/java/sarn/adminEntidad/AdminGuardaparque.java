@@ -17,6 +17,7 @@ public class AdminGuardaparque extends AdminPersona {
     }
 
     public void llenarEntidad(Entidad e, List<Entidad> entidades){
+        System.out.println();
         System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque gd = (Guardaparque) e;
         while(true){
@@ -38,6 +39,7 @@ public class AdminGuardaparque extends AdminPersona {
 
     @Override
     public void listarEntidades(List<Entidad> entidades) {
+        System.out.println();
         System.out.println("LISTA DE GUARDAPARQUES");
         for (int i = 0; i < entidades.size(); i++) {
             Guardaparque g = (Guardaparque) entidades.get(i);

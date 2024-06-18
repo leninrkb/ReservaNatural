@@ -26,6 +26,7 @@ public class AdminVisita extends AdminEntidad {
     }
 
     public Boolean llenarEntidad(ReservaNatural reserva, Entidad entidad) {
+        System.out.println();
         System.out.println("NUEVA VISITA");
         Visita v = (Visita) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante");
@@ -46,6 +47,7 @@ public class AdminVisita extends AdminEntidad {
 
     @Override
     public void listarEntidades(List<Entidad> entidades) {
+        System.out.println();
         System.out.println("TODAS LAS VISITAS REGISTRADAS");
         for (int i = 0; i < entidades.size(); i++) {
             Visita v = (Visita) entidades.get(i);

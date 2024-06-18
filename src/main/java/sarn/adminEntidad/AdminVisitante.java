@@ -26,6 +26,7 @@ public class AdminVisitante extends AdminPersona {
     }
 
     public void llenarEntidad(Entidad e, List<Entidad> visitantes){
+        System.out.println();
         System.out.println("[NUEVO VISITANTE]");
         Visitante v = (Visitante) e;
         Boolean opcional = true;
@@ -54,6 +55,7 @@ public class AdminVisitante extends AdminPersona {
 
     @Override
     public void listarEntidades(List<Entidad> entidades) {
+        System.out.println();
         System.out.println("VISITANTES REGISTRADOS");
         for (int i = 0; i < entidades.size(); i += 1) {
             Visitante v = (Visitante) entidades.get(i);
