@@ -62,4 +62,18 @@ public class AdminVisitante extends AdminPersona {
         }
     }
 
+    @Override
+    public Boolean eliminarEntidad(Integer id, List<Entidad> entidades) {
+        Visitante vt = (Visitante) validarEntidad(entidades, id);
+        if(vt == null){
+            System.out.println("No existe nadie con el ID indicado");
+            return false;
+        }
+        if(!vt.enVisita){
+            return super.eliminarEntidad(id, entidades);
+        }
+        System.out.println("El visitante esta aun dentro de la reserva");
+        return false;
+    }
+
 }

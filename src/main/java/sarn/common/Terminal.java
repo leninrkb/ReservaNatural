@@ -170,12 +170,22 @@ public class Terminal {
                     salir = !salir;
                     break;
 
+                case "eliminar":
+                case "el":
+                case "5":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"), reserva.visitantes);
+                    if(eliminado){
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    break;
+
                 case "help":
                 case "h":
                 case "4":
                     System.out.println("\n======= AYUDA ======================");
                     System.out.println("1. l       - Listar visitantes");
                     System.out.println("2. r       - Registrar nuevo visitante");
+                    System.out.println("5. el       - Eliminar visitante");
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("======================================\n");
