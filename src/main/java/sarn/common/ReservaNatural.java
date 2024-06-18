@@ -1,10 +1,12 @@
 package sarn.common;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import sarn.entidad.*;
 
-public class ReservaNatural {
-    private static ReservaNatural reservaNatural;
+public class ReservaNatural implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private static ReservaNatural clase;
     public List<Entidad> visitantes = new ArrayList<>();
     public List<Entidad> guardaparques = new ArrayList<>();
     public List<Entidad> incidencias = new ArrayList<>();
@@ -13,10 +15,10 @@ public class ReservaNatural {
     private ReservaNatural() { }
 
     public static ReservaNatural getInstance() {
-        if (reservaNatural == null) {
-            reservaNatural = new ReservaNatural();
-            return reservaNatural;
+        if (clase == null) {
+            clase = new ReservaNatural();
+            return clase;
         }
-        return reservaNatural;
+        return clase;
     }
 }
