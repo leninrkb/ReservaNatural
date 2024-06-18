@@ -139,4 +139,19 @@ public class IOControl {
         }
         return fecha;
     }
+
+    public boolean confirmacionSalida(String mensaje) {
+        String respuesta;
+        while (true) {
+            System.out.print(mensaje);
+            respuesta = in.nextLine().trim().toLowerCase();
+            if (respuesta.equals("s") || respuesta.equals("n")) {
+                break;
+            } else {
+                System.out.println("Por favor, responda 's' para sí o 'n' para no.");
+            }
+        }
+        return respuesta.equals("s");
+    }
+    
 }
