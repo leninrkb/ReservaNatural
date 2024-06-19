@@ -3,6 +3,7 @@ package sarn.common;
 import java.time.LocalDateTime;
 import sarn.adminEntidad.*;
 import sarn.entidad.*;
+import sarn.gui.MainFrame;
 import sarn.persistencia.Persistencia;
 import sarn.reporte.Reporte;
 
@@ -377,6 +378,7 @@ public class Terminal {
                 System.out.println("5. Generar reportes                               (r)");
                 System.out.println("6. Salir                                          (x)");
                 System.out.println("7. Mostrar ayuda                                  (h)");
+                System.out.println("8. Modo grafico                                   (gui)");
                 System.out.println("=======================================================\n");
             }
 
@@ -436,6 +438,11 @@ public class Terminal {
                     System.out.println("=============================\n");
                     mostrarMenu = false;
                     break;
+
+                case "gui":
+                    MainFrame gui = new MainFrame();
+                    gui.initialize();
+                break;
             }
         }
     }
