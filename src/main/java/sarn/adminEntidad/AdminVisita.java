@@ -29,7 +29,7 @@ public class AdminVisita extends AdminEntidad {
         System.out.println("NUEVA VISITA");
         Visita v = (Visita) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante");
-        Visitante vt = (Visitante) validarEntidad(reserva.visitantes, idVisitante);
+        Visitante vt = (Visitante) encontrarEntidad(reserva.visitantes, idVisitante);
         if (vt == null) {
             System.out.println("no se encontro el visitante con ID " + idVisitante);
             return false;
@@ -62,15 +62,21 @@ public class AdminVisita extends AdminEntidad {
 
     public void registrarSalida(ReservaNatural reserva) {
         Integer idVisita = control.ingresoNumero("ID de la visita");
-        Visita v = (Visita) validarEntidad(reserva.visitas, idVisita);
+        Visita v = (Visita) encontrarEntidad(reserva.visitas, idVisita);
         if (v == null) {
             System.out.println("No se encontro la visita con ID " + idVisita);
             return;
         }
-        Visitante vt = (Visitante) validarEntidad(reserva.visitantes, v.idVisitante);
+        Visitante vt = (Visitante) encontrarEntidad(reserva.visitantes, v.idVisitante);
         vt.cambioEstadoVisita();
         v.fechaHoraTermina = LocalDateTime.now();
         System.out.println("Salida registrada con exito!");
+    }
+
+    @Override
+    public Entidad editarEntidad(Entidad e) {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }

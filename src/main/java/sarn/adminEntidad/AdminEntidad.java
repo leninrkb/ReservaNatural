@@ -11,6 +11,7 @@ public abstract class AdminEntidad {
     public abstract Entidad nuevaEntidad();
     public abstract void llenarEntidad(Entidad entidad);
     public abstract void listarEntidades(List<Entidad> entidades);
+    public abstract Entidad editarEntidad(Entidad e);
 
     public Boolean eliminarEntidad(Integer id, List<Entidad> entidades){
         for (int i = 0; i < entidades.size(); i++) {
@@ -23,7 +24,7 @@ public abstract class AdminEntidad {
         return false;
     }
 
-    public Entidad validarEntidad(List<Entidad> entidades, Integer id) {
+    public Entidad encontrarEntidad(List<Entidad> entidades, Integer id) {
         Entidad valido = null;
         for (int i = 0; i < entidades.size(); i++) {
             Entidad e = entidades.get(i);

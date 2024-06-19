@@ -179,5 +179,10 @@ public class IOControl {
             System.out.println("Ningun registro por cargar");
         }
     }
+
+    public Boolean confirmar(String msg){
+        String resp = ingresoTexto(msg);
+        return resp.equalsIgnoreCase("s");
+    }
     
 }

@@ -88,6 +88,7 @@ public class Terminal {
                 System.out.println("\n===================== GESTIÓN DE GUARDAPARQUES ================");
                 System.out.println("1. Listar guardaparques                                    (l)");
                 System.out.println("2. Registrar nuevo guardaparque                            (r)");
+                System.out.println("5. Editar guardaparque                                     (r)");
                 System.out.println("3. Salir                                                   (x)");
                 System.out.println("4. Mostrar ayuda                                           (h)");
                 System.out.println("=================================================================\n");
@@ -125,9 +126,18 @@ public class Terminal {
                     System.out.println("2. r       - Registrar nuevo guardaparque");
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
+                    System.out.println("5. ed      - Editar guardaparque");
+                    System.out.println("5. ed      - Editar guardaparque");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
+
+                case "editar":
+                case "ed":
+                case "5":
+                    admin.editarEntidad(reserva.guardaparques, control.ingresoNumero("ID del guardaparque"));
+                    break;
+                    
             }
         }
     }
@@ -144,6 +154,8 @@ public class Terminal {
                 System.out.println("2. Registrar nuevo visitante                              (r)");
                 System.out.println("3. Salir                                                  (x)");
                 System.out.println("4. Mostrar ayuda                                          (h)");
+                System.out.println("5. Eliminar visitante                                     (el)");
+                System.out.println("6. Editar visitante                                       (ed)");
                 System.out.println("================================================================\n");
             }
 
@@ -173,16 +185,6 @@ public class Terminal {
                     salir = !salir;
                     break;
 
-                case "eliminar":
-                case "el":
-                case "5":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"),
-                            reserva.visitantes);
-                    if (eliminado) {
-                        System.out.println("Operacion realizada con exito!");
-                    }
-                    break;
-
                 case "help":
                 case "h":
                 case "4":
@@ -194,6 +196,22 @@ public class Terminal {
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
+                    break;
+
+                case "eliminar":
+                case "el":
+                case "5":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del visitante a liminar"),
+                            reserva.visitantes);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    break;
+
+                case "editar":
+                case "ed":
+                case "6":
+                    admin.editarEntidad(reserva.visitantes, control.ingresoNumero("ID del visitante"));
                     break;
             }
 

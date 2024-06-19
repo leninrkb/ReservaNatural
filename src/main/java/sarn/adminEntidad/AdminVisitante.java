@@ -64,7 +64,7 @@ public class AdminVisitante extends AdminPersona {
 
     @Override
     public Boolean eliminarEntidad(Integer id, List<Entidad> entidades) {
-        Visitante vt = (Visitante) validarEntidad(entidades, id);
+        Visitante vt = (Visitante) encontrarEntidad(entidades, id);
         if(vt == null){
             System.out.println("No existe nadie con el ID indicado");
             return false;
@@ -74,6 +74,24 @@ public class AdminVisitante extends AdminPersona {
         }
         System.out.println("El visitante esta aun dentro de la reserva");
         return false;
+    }
+
+    public void editarEntidad(List<Entidad> entidades, Integer id) {
+        Visitante vt = (Visitante) encontrarEntidad(entidades, id);
+        if(vt == null){
+            System.out.println("no se encontro al visitante");
+            return;
+        }
+        super.editarEntidad(vt);
+        if(control.confirmar("editar ruc? (s/n)")){
+            vt.ruc = control.ingresoTexto("ruc");
+        }
+        if(control.confirmar("editar direccion? (s/n)")){
+            vt.direccion = control.ingresoTexto("Direccion");
+        }
+        if(control.confirmar("editar telefono? (s/n)")){
+            vt.telefono = control.ingresoTexto("telefono");
+        }
     }
 
 }

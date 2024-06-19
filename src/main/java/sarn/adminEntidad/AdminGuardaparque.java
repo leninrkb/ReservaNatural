@@ -1,4 +1,5 @@
 package sarn.adminEntidad;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import sarn.entidad.*;
@@ -6,8 +7,9 @@ import sarn.entidad.*;
 public class AdminGuardaparque extends AdminPersona {
     private static AdminGuardaparque clase;
 
-    private AdminGuardaparque(){}
-    
+    private AdminGuardaparque() {
+    }
+
     @Override
     public Entidad nuevaEntidad() {
         this.registro += 1;
@@ -16,12 +18,12 @@ public class AdminGuardaparque extends AdminPersona {
         return entidad;
     }
 
-    public void llenarEntidad(Entidad e, List<Entidad> entidades){
+    public void llenarEntidad(Entidad e, List<Entidad> entidades) {
         System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque gd = (Guardaparque) e;
-        while(true){
+        while (true) {
             gd.cedula = this.control.ingresoCedula("ingrese su cedula", false);
-            if(cedulaUnica(gd, entidades)){
+            if (cedulaUnica(gd, entidades)) {
                 break;
             }
         }
@@ -47,10 +49,22 @@ public class AdminGuardaparque extends AdminPersona {
     }
 
     public static AdminGuardaparque getInstance() {
-        if(clase == null) {
+        if (clase == null) {
             clase = new AdminGuardaparque();
             return clase;
         }
         return clase;
+    }
+
+    public void editarEntidad(List<Entidad> entidades, Integer id) {
+        Guardaparque gd = (Guardaparque) encontrarEntidad(entidades, id);
+        if(gd == null){
+            System.out.println("No se logro encontrar el guardaparque");
+            return;
+        }
+        editarEntidad(gd);
+        if (control.confirmar("actualizar fecha de contratacion? (s/n)")) {
+            gd.fechaContratacion = LocalDateTime.now();
+        }
     }
 }
