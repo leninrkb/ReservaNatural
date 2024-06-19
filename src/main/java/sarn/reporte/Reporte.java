@@ -47,7 +47,7 @@ public class Reporte {
             String fechaVisita = v.fechaHoraInicia.format(formatoFecha);
             if (fechaVisita.equals(fechaHoy)) {
                 Integer idVisitante = v.idVisitante;
-                Visitante vt = (Visitante) admin.validarEntidad(reserva.visitantes, idVisitante);
+                Visitante vt = (Visitante) admin.encontrarEntidad(reserva.visitantes, idVisitante);
                 if(vt == null) {
                     continue;
                 }
@@ -70,7 +70,7 @@ public class Reporte {
             String fechaVisita = visita.fechaHoraInicia.format(formatoFecha);
             if (fechaVisita.equals(fecha)) {
                 Integer idVisitante = visita.idVisitante;
-                Visitante visitante = (Visitante) admin.validarEntidad(reserva.visitantes, idVisitante);
+                Visitante visitante = (Visitante) admin.encontrarEntidad(reserva.visitantes, idVisitante);
                 if(visitante == null) {
                     continue;
                 }

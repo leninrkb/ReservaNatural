@@ -11,13 +11,13 @@ public class AdminIncidencia extends AdminEntidad {
 
     public void atenderIncidencia(ReservaNatural reserva) {
         Integer idIncidencia = control.ingresoNumero("ID de la incidencia");
-        Incidencia inc = (Incidencia) validarEntidad(reserva.incidencias, idIncidencia);
+        Incidencia inc = (Incidencia) encontrarEntidad(reserva.incidencias, idIncidencia);
         if (inc == null) {
             System.out.println("No existe la incidencia " + idIncidencia);
             return;
         }
         Integer idGuardaparque = control.ingresoNumero("ID del guardaparque");
-        Guardaparque g = (Guardaparque) validarEntidad(reserva.guardaparques, idGuardaparque);
+        Guardaparque g = (Guardaparque) encontrarEntidad(reserva.guardaparques, idGuardaparque);
         if (g == null) {
             System.out.println("No existe el guardaparque " + idGuardaparque);
             return;
@@ -40,7 +40,7 @@ public class AdminIncidencia extends AdminEntidad {
         System.out.println("REPORTE DE NUEVA INCIDENCIA");
         Incidencia inc = (Incidencia) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante que reporta");
-        Visitante v = (Visitante) validarEntidad(reserva.visitantes, idVisitante);
+        Visitante v = (Visitante) encontrarEntidad(reserva.visitantes, idVisitante);
         if(v == null) {
             System.out.println("no se encontro el visitante " + idVisitante);
             return false;
@@ -75,6 +75,12 @@ public class AdminIncidencia extends AdminEntidad {
     public void llenarEntidad(Entidad entidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+    }
+
+    @Override
+    public Entidad editarEntidad(Entidad e) {
+        // TODO Auto-generated method stub
+        return null;
     }
     
 }
