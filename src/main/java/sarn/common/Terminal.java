@@ -27,6 +27,7 @@ public class Terminal {
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
                 System.out.println("6. Eliminar incidencia                                    (el)");
+                System.out.println("7. Editar incidencia                                      (ed)");
                 System.out.println("================================================================\n");
             }
 
@@ -62,16 +63,6 @@ public class Terminal {
                     salir = !salir;
                     break;
 
-                case "eliminar":
-                case "el":
-                case "6":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la incidencia a eliminar"),
-                            reserva.incidencias);
-                    if (eliminado) {
-                        System.out.println("Operacion realizada con exito!");
-                    }
-                    break;
-
                 case "help":
                 case "h":
                 case "5":
@@ -82,9 +73,36 @@ public class Terminal {
                     System.out.println("4. x       - Salir");
                     System.out.println("5. h       - Mostrar ayuda");
                     System.out.println("6. el      - Eliminar incidencia");
+                    System.out.println("7. ed      - Editar incidencia");
                     System.out.println("=======================================\n");
                     mostrarMenu = false;
                     break;
+
+                case "eliminar":
+                case "el":
+                case "6":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la incidencia a eliminar"),
+                            reserva.incidencias);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    mostrarMenu = false;
+                    break;
+
+                case "editar":
+                case "ed":
+                case "7":
+                    int idIncidencia = control.ingresoNumero("ID de la incidencia");
+                    Entidad entidadEditada = admin
+                            .editarEntidad(admin.encontrarEntidad(reserva.incidencias, idIncidencia));
+                    if (entidadEditada != null) {
+                        System.out.println("Incidencia editada correctamente.");
+                    } else {
+                        System.out.println("No se pudo editar la incidencia.");
+                    }
+                    mostrarMenu = false;
+                    break;
+
             }
         }
     }
@@ -132,16 +150,6 @@ public class Terminal {
                     salir = !salir;
                     break;
 
-                case "eliminar":
-                case "el":
-                case "5":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del guardaparque a eliminar"),
-                            reserva.guardaparques);
-                    if (eliminado) {
-                        System.out.println("Operacion realizada con exito!");
-                    }
-                    break;
-
                 case "help":
                 case "h":
                 case "4":
@@ -156,10 +164,22 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
+                case "eliminar":
+                case "el":
+                case "5":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del guardaparque a eliminar"),
+                            reserva.guardaparques);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    mostrarMenu = false;
+                    break;
+
                 case "editar":
                 case "ed":
                 case "6":
                     admin.editarEntidad(reserva.guardaparques, control.ingresoNumero("ID del guardaparque"));
+                    mostrarMenu = false;
                     break;
 
             }
@@ -218,6 +238,7 @@ public class Terminal {
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("5. el      - Eliminar visitante");
+                    System.out.println("5. ed      - Editar visitante");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -230,12 +251,14 @@ public class Terminal {
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
                     }
+                    mostrarMenu = false;
                     break;
 
                 case "editar":
                 case "ed":
                 case "6":
                     admin.editarEntidad(reserva.visitantes, control.ingresoNumero("ID del visitante"));
+                    mostrarMenu = false;
                     break;
             }
 
@@ -257,6 +280,7 @@ public class Terminal {
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
                 System.out.println("6. Eliminar visita                                        (el)");
+                System.out.println("7. Editar visita                                          (ed)");
                 System.out.println("================================================================\n");
 
             }
@@ -297,16 +321,6 @@ public class Terminal {
                     salir = !salir;
                     break;
 
-                case "eliminar":
-                case "el":
-                case "6":
-                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la visita a eliminar"),
-                            reserva.visitas);
-                    if (eliminado) {
-                        System.out.println("Operacion realizada con exito!");
-                    }
-                    break;
-
                 case "help":
                 case "h":
                 case "5":
@@ -317,9 +331,35 @@ public class Terminal {
                     System.out.println("4. x            - Salir");
                     System.out.println("5. h            - Mostrar ayuda");
                     System.out.println("6. el           - Eliminar visita");
+                    System.out.println("7. ed           - Editar visita");
                     System.out.println("=============================================\n");
                     mostrarMenu = false;
                     break;
+
+                case "eliminar":
+                case "el":
+                case "6":
+                    Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la visita a eliminar"),
+                            reserva.visitas);
+                    if (eliminado) {
+                        System.out.println("Operacion realizada con exito!");
+                    }
+                    mostrarMenu = false;
+                    break;
+
+                    case "editar":
+                    case "ed":
+                    case "7":
+                        Integer idVisita = control.ingresoNumero("ID de la visita a editar");
+                        Visita visita = (Visita) admin.encontrarEntidad(reserva.visitas, idVisita);
+                        if (visita != null) {
+                            admin.editarEntidad(visita);
+                            System.out.println("Visita editada con éxito!");
+                        } else {
+                            System.out.println("No se encontró la visita con ID " + idVisita);
+                        }
+                        mostrarMenu = false;
+                        break;
             }
         }
     }

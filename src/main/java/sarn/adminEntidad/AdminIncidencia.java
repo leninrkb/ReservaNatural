@@ -1,4 +1,5 @@
 package sarn.adminEntidad;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import sarn.common.*;
@@ -7,7 +8,8 @@ import sarn.entidad.*;
 public class AdminIncidencia extends AdminEntidad {
     private static AdminIncidencia clase;
 
-    private AdminIncidencia() {}
+    private AdminIncidencia() {
+    }
 
     public void atenderIncidencia(ReservaNatural reserva) {
         Integer idIncidencia = control.ingresoNumero("ID de la incidencia");
@@ -41,7 +43,7 @@ public class AdminIncidencia extends AdminEntidad {
         Incidencia inc = (Incidencia) entidad;
         Integer idVisitante = control.ingresoNumero("ID del visitante que reporta");
         Visitante v = (Visitante) encontrarEntidad(reserva.visitantes, idVisitante);
-        if(v == null) {
+        if (v == null) {
             System.out.println("no se encontro el visitante " + idVisitante);
             return false;
         }
@@ -64,7 +66,7 @@ public class AdminIncidencia extends AdminEntidad {
     }
 
     public static AdminIncidencia getInstance() {
-        if(clase == null) {
+        if (clase == null) {
             clase = new AdminIncidencia();
             return clase;
         }
@@ -79,8 +81,23 @@ public class AdminIncidencia extends AdminEntidad {
 
     @Override
     public Entidad editarEntidad(Entidad e) {
-        // TODO Auto-generated method stub
-        return null;
+        Incidencia inc = (Incidencia) e;
+
+        System.out.println("Editando incidencia ID: " + inc.id);
+
+        if (control.confirmar("Editar fecha y hora de la atencion? (s/n)")) {
+            inc.fechaHoraTermina = control.ingresoFechaHora("Ingrese nueva fecha y hora (formato: yyyy-MM-dd HH:mm)");
+        }
+
+        if (control.confirmar("Editar descripción? (s/n)")) {
+            inc.descripcion = control.ingresoTexto("Nueva descripción");
+        }
+
+        if (control.confirmar("Agregar anotaciones? (s/n)")) {
+            inc.anotaciones = control.ingresoTexto("Nuevas anotaciones");
+        }
+
+        return inc;
     }
-    
+
 }

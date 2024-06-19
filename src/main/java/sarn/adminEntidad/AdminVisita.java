@@ -77,8 +77,16 @@ public class AdminVisita extends AdminEntidad {
 
     @Override
     public Entidad editarEntidad(Entidad e) {
-        // TODO Auto-generated method stub
-        return null;
+        Visita v = (Visita) e;
+        
+        System.out.println("Editando visita ID: " + v.id);
+        
+        if (control.confirmar("Editar fecha y hora de salida ? (s/n)")) {
+            v.fechaHoraTermina = control.ingresoFechaHora("Ingrese nueva fecha y hora (formato: yyyy-MM-dd HH:mm)");
+        }
+        
+        return v;
     }
+    
     
 }
