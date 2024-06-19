@@ -66,7 +66,7 @@ public class Terminal {
                 case "el":
                 case "6":
                     Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la incidencia a eliminar"),
-                            reserva.visitantes);
+                            reserva.incidencias);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
                     }
@@ -81,6 +81,7 @@ public class Terminal {
                     System.out.println("3. a       - Atender incidencia");
                     System.out.println("4. x       - Salir");
                     System.out.println("5. h       - Mostrar ayuda");
+                    System.out.println("6. el      - Eliminar incidencia");
                     System.out.println("=======================================\n");
                     mostrarMenu = false;
                     break;
@@ -133,7 +134,7 @@ public class Terminal {
                 case "el":
                 case "5":
                     Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID del guardaparque a eliminar"),
-                            reserva.visitantes);
+                            reserva.guardaparques);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
                     }
@@ -238,7 +239,7 @@ public class Terminal {
                 System.out.println("3. Registrar salida de visita                             (rs)");
                 System.out.println("4. Salir                                                  (x)");
                 System.out.println("5. Mostrar ayuda                                          (h)");
-                System.out.println("5. Eliminar visita                                        (el)");
+                System.out.println("6. Eliminar visita                                        (el)");
                 System.out.println("================================================================\n");
 
             }
@@ -283,7 +284,7 @@ public class Terminal {
                 case "el":
                 case "6":
                     Boolean eliminado = admin.eliminarEntidad(control.ingresoNumero("ID de la visita a eliminar"),
-                            reserva.visitantes);
+                            reserva.visitas);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
                     }
