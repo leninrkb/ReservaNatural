@@ -106,7 +106,7 @@ public class AdminIncidencia extends AdminEntidad {
             List<Entidad> guardaparques) {
         try (FileWriter writer = new FileWriter(rutaArchivo)) {
             // Escribir encabezados CSV
-            writer.write("ID,Visitante,Guardaparque,Fecha Inicio, Fecha Fim,Descripcion,Anotaciones\n");
+            writer.write("ID,Visitante,Guardaparque,Fecha Reporte, Fecha Atencion,Descripcion,Anotaciones\n");
 
             // Escribir datos de incidencias
             for (Entidad entidad : incidencias) {
@@ -114,7 +114,8 @@ public class AdminIncidencia extends AdminEntidad {
                 String nombreVisitante = obtenerNombreVisitante(i.idVisitante, visitantes);
                 String nombreGuardaparque = obtenerNombreGuardaparque(i.idGuardaparque, guardaparques);
                 writer.write(String.format("%d,%s,%s,%s,%s,%s,%s\n",
-                        i.id, nombreVisitante, nombreGuardaparque, i.fechaHoraInicia, i.fechaHoraTermina, i.descripcion, i.anotaciones));
+                        i.id, nombreVisitante, nombreGuardaparque, i.fechaHoraInicia, i.fechaHoraTermina, i.descripcion,
+                        i.anotaciones));
             }
             return true;
         } catch (IOException e) {

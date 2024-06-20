@@ -28,7 +28,6 @@ public class Terminal {
                 System.out.println("5. Mostrar ayuda                                          ");
                 System.out.println("6. Eliminar Incidencia                                    ");
                 System.out.println("7. Editar Incidencia                                      ");
-                System.out.println("8. Exportar Datos                                         ");
                 System.out.println("================================================================\n");
             }
 
@@ -75,7 +74,6 @@ public class Terminal {
                     System.out.println("5. h       - Mostrar ayuda");
                     System.out.println("6. el      - Eliminar incidencia");
                     System.out.println("7. ed      - Editar incidencia");
-                    System.out.println("8. ex      - Exportar incidencia");
                     System.out.println("=======================================\n");
                     mostrarMenu = false;
                     break;
@@ -95,7 +93,8 @@ public class Terminal {
                 case "ed":
                 case "7":
                     int idIncidencia = control.ingresoNumero("ID de la incidencia");
-                    Entidad entidadEditada = admin.editarEntidad(admin.encontrarEntidad(reserva.incidencias, idIncidencia));
+                    Entidad entidadEditada = admin
+                            .editarEntidad(admin.encontrarEntidad(reserva.incidencias, idIncidencia));
                     if (entidadEditada != null) {
                         System.out.println("Incidencia editada correctamente.");
                     } else {
@@ -103,28 +102,7 @@ public class Terminal {
                     }
                     mostrarMenu = false;
                     break;
-
-                case "exportar":
-                case "ex":
-                case "8":
-                    exportarIncidencias();
-                    mostrarMenu = false;
-                    break;
-
             }
-        }
-    }
-
-    private void exportarIncidencias() {
-        AdminIncidencia admin = AdminIncidencia.getInstance();
-        String rutaArchivo = control
-                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
-        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.incidencias, reserva.visitantes,
-                reserva.guardaparques);
-        if (exportado) {
-            System.out.println("Datos de incidencias exportados correctamente.");
-        } else {
-            System.out.println("No se pudo exportar los datos de incidencias como CSV.");
         }
     }
 
@@ -143,7 +121,6 @@ public class Terminal {
                 System.out.println("4. Mostrar ayuda                                           ");
                 System.out.println("5. Eliminar Guardaparque                                   ");
                 System.out.println("6. Editar Guardaparque                                     ");
-                System.out.println("7. Exportar Datos                                          ");
                 System.out.println("=================================================================\n");
             }
 
@@ -181,7 +158,6 @@ public class Terminal {
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("5. el      - Eliminar guardaparque");
                     System.out.println("6. ed      - Editar guardaparque");
-                    System.out.println("7. ex      - Exportar guardaparque");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -204,26 +180,7 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
-                case "exportar":
-                case "ex":
-                case "7":
-                    exportarGuardaparques();
-                    mostrarMenu = false;
-                    break;
-
             }
-        }
-    }
-
-    private void exportarGuardaparques() {
-        AdminGuardaparque admin = AdminGuardaparque.getInstance();
-        String rutaArchivo = control
-                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
-        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.guardaparques);
-        if (exportado) {
-            System.out.println("Datos de guardaparques exportados correctamente.");
-        } else {
-            System.out.println("No se pudo exportar los datos de guardaparques como CSV.");
         }
     }
 
@@ -241,7 +198,6 @@ public class Terminal {
                 System.out.println("4. Mostrar ayuda                                          ");
                 System.out.println("5. Eliminar Visitante                                     ");
                 System.out.println("6. Editar Visitante                                       ");
-                System.out.println("7. Exportar Visitante                                     ");
                 System.out.println("================================================================\n");
             }
 
@@ -281,7 +237,6 @@ public class Terminal {
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("5. el      - Eliminar visitante");
                     System.out.println("6. ed      - Editar visitante");
-                    System.out.println("7. ev      - Exportar visitante");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -304,26 +259,8 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
-                case "exportar visitantes":
-                case "ex":
-                case "7":
-                    exportarVisitantes();
-                    mostrarMenu = false;
-                    break;
             }
 
-        }
-    }
-
-    private void exportarVisitantes() {
-        AdminVisitante admin = AdminVisitante.getInstance();
-        String rutaArchivo = control
-                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
-        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitantes);
-        if (exportado) {
-            System.out.println("Datos de visitantes exportados correctamente.");
-        } else {
-            System.out.println("No se pudo exportar los datos de visitantes como CSV.");
         }
     }
 
@@ -343,7 +280,6 @@ public class Terminal {
                 System.out.println("5. Mostrar ayuda                                          ");
                 System.out.println("6. Eliminar Visita                                        ");
                 System.out.println("7. Editar Visita                                          ");
-                System.out.println("8. Exportar Visita                                        ");
                 System.out.println("================================================================\n");
 
             }
@@ -395,7 +331,6 @@ public class Terminal {
                     System.out.println("5. h            - Mostrar ayuda");
                     System.out.println("6. el           - Eliminar visita");
                     System.out.println("7. ed           - Editar visita");
-                    System.out.println("8. ex           - Exportar visita");
                     System.out.println("=============================================\n");
                     mostrarMenu = false;
                     break;
@@ -425,25 +360,7 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
-                case "exportar visitantes":
-                case "ex":
-                case "8":
-                    exportarVisitas();
-                    mostrarMenu = false;
-                    break;
             }
-        }
-    }
-
-    private void exportarVisitas() {
-        AdminVisita admin = AdminVisita.getInstance();
-        String rutaArchivo = control
-                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
-        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitas, reserva.visitantes);
-        if (exportado) {
-            System.out.println("Datos de visitas exportados correctamente.");
-        } else {
-            System.out.println("No se pudo exportar los datos de visitas como CSV.");
         }
     }
 
@@ -536,6 +453,7 @@ public class Terminal {
                 System.out.println("5. Generar reportes                               ");
                 System.out.println("6. Salir                                          ");
                 System.out.println("7. Mostrar ayuda                                  ");
+                System.out.println("8. Exportar Datos                                 ");
                 System.out.println("=======================================================\n");
             }
 
@@ -592,14 +510,114 @@ public class Terminal {
                     System.out.println("5. r          - reportes");
                     System.out.println("6. x          - salir");
                     System.out.println("7. h          - help");
+                    System.out.println("8. ex         - exportar");
                     System.out.println("=============================\n");
                     mostrarMenu = false;
+                    break;
+
+                case "exportar":
+                case "ex":
+                case "8":
+                    exportarDatos();
                     break;
 
             }
 
         }
 
+    }
+
+    public void exportarDatos() {
+        Boolean salir = false;
+        Boolean mostrarMenu = true;
+
+        while (!salir) {
+            if (mostrarMenu) {
+                System.out.println("\n=========== EXPORTAR DATOS ===========");
+                System.out.println("1. Exportar Visitantes");
+                System.out.println("2. Exportar Guardaparques");
+                System.out.println("3. Exportar Incidencias");
+                System.out.println("4. Exportar Visitas");
+                System.out.println("5. Volver al Menú Principal");
+                System.out.println("=======================================");
+            }
+
+            String opcion = control.ingresoTerminal("exportar datos");
+            switch (opcion) {
+                case "1":
+                    exportarVisitantes();
+                    mostrarMenu = false;
+                    break;
+                case "2":
+                    exportarGuardaparques();
+                    mostrarMenu = false;
+                    break;
+                case "3":
+                    exportarIncidencias();
+                    mostrarMenu = false;
+                    break;
+                case "4":
+                    exportarVisitas();
+                    mostrarMenu = false;
+                    break;
+                case "5":
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    mostrarMenu = false;
+                    break;
+            }
+        }
+    }
+
+    private void exportarVisitas() {
+        AdminVisita admin = AdminVisita.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese un nombre para del archivo: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitas, reserva.visitantes);
+        if (exportado) {
+            System.out.println("Datos de Visitas exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de visitas como CSV.");
+        }
+    }
+
+    private void exportarVisitantes() {
+        AdminVisitante admin = AdminVisitante.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese un nombre para del archivo: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitantes);
+        if (exportado) {
+            System.out.println("Datos de Visitantes exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de visitantes como CSV.");
+        }
+    }
+
+    private void exportarGuardaparques() {
+        AdminGuardaparque admin = AdminGuardaparque.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese un nombre para del archivo: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.guardaparques);
+        if (exportado) {
+            System.out.println("Datos de Guardaparques exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de guardaparques como CSV.");
+        }
+    }
+
+    private void exportarIncidencias() {
+        AdminIncidencia admin = AdminIncidencia.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese un nombre para del archivo: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.incidencias, reserva.visitantes,
+                reserva.guardaparques);
+        if (exportado) {
+            System.out.println("Datos de Incidencias exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de incidencias como CSV.");
+        }
     }
 
 }

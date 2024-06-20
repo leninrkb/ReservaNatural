@@ -1,4 +1,5 @@
 package sarn.common;
+
 import java.time.format.DateTimeFormatter;
 
 public class FormatoFecha {

@@ -92,7 +92,6 @@ public class AdminVisita extends AdminEntidad {
 
         return v;
     }
-    
 
     public boolean exportarDatos(String rutaArchivo, List<Entidad> visitas, List<Entidad> visitantes) {
         try (FileWriter writer = new FileWriter(rutaArchivo)) {

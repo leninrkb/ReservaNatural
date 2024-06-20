@@ -17,16 +17,16 @@ public class Reporte {
     public DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public DateTimeFormatter formatoFechaHora = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    private Reporte() {}
+    private Reporte() {
+    }
 
     public static Reporte getInstance() {
-        if (clase == null){
+        if (clase == null) {
             clase = new Reporte();
             return clase;
         }
         return clase;
     }
-
 
     public String nombreDia(LocalDateTime fecha) {
         DayOfWeek dia = fecha.getDayOfWeek();
@@ -34,12 +34,11 @@ public class Reporte {
         return nombreDia;
     }
 
-
     public void visitantesPorDia(ReservaNatural reserva) {
         AdminVisita admin = AdminVisita.getInstance();
         List<Entidad> visitas = reserva.visitas;
         LocalDateTime fecha = LocalDateTime.now();
-        String fechaHoy = fecha.format(formatoFecha); //tengo el dia de hoy
+        String fechaHoy = fecha.format(formatoFecha); // tengo el dia de hoy
         Integer totalVisitasHoy = 0;
         System.out.println("VISITANTES POR DIA");
         for (int i = 0; i < visitas.size(); i++) {
@@ -48,7 +47,7 @@ public class Reporte {
             if (fechaVisita.equals(fechaHoy)) {
                 Integer idVisitante = v.idVisitante;
                 Visitante vt = (Visitante) admin.encontrarEntidad(reserva.visitantes, idVisitante);
-                if(vt == null) {
+                if (vt == null) {
                     continue;
                 }
                 totalVisitasHoy += 1;
@@ -59,7 +58,7 @@ public class Reporte {
         System.out.println("Hoy " + nombreDia(fecha) + " se registran => " + totalVisitasHoy + " visitas");
     }
 
-    public void visitasPorFecha(ReservaNatural reserva, String fecha){
+    public void visitasPorFecha(ReservaNatural reserva, String fecha) {
         AdminVisita admin = AdminVisita.getInstance();
         List<Entidad> visitas = reserva.visitas;
         Integer totalVisitasFecha = 0;
@@ -71,47 +70,47 @@ public class Reporte {
             if (fechaVisita.equals(fecha)) {
                 Integer idVisitante = visita.idVisitante;
                 Visitante visitante = (Visitante) admin.encontrarEntidad(reserva.visitantes, idVisitante);
-                if(visitante == null) {
+                if (visitante == null) {
                     continue;
                 }
                 totalVisitasFecha += 1;
                 Integer totalIncVisitante = totalIncidenciasVisitante(reserva.incidencias, idVisitante);
                 totalIncidencias += totalIncVisitante;
                 visitante.toString();
-                if(visita.fechaHoraTermina == null) {
-                    System.out.println("El visitante " + visitante.nombres + " no ha registrado la salida de la reserva");
+                if (visita.fechaHoraTermina == null) {
+                    System.out
+                            .println("El visitante " + visitante.nombres + " no ha registrado la salida de la reserva");
                 }
                 System.out.println(visitante.nombres + " ha registrado " + totalIncVisitante + " incidencias");
                 System.out.println();
             }
         }
-        System.out.println("En la fecha " + fecha + " se registran:\n" 
-        + totalVisitasFecha + " visitas" + "\n"
-        + totalIncidencias + " incidencias reportadas"
-        );
+        System.out.println("En la fecha " + fecha + " se registran:\n"
+                + totalVisitasFecha + " visitas" + "\n"
+                + totalIncidencias + " incidencias reportadas");
     }
 
     public Integer totalIncidenciasVisitante(List<Entidad> entidades, Integer id) {
         Integer total = 0;
         for (int i = 0; i < entidades.size(); i++) {
             Incidencia inc = (Incidencia) entidades.get(i);
-            if(inc.idVisitante == id) {
+            if (inc.idVisitante == id) {
                 total += 1;
             }
-        }   
+        }
         return total;
     }
 
-    public void incidenciasRangoFecha(List<Entidad> entidades, LocalDateTime fechaInicio, LocalDateTime fechaFin){
+    public void incidenciasRangoFecha(List<Entidad> entidades, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         Integer total = 0;
         for (Entidad entidad : entidades) {
             Incidencia inc = (Incidencia) entidad;
-            if(inc.fechaHoraInicia == null) {
+            if (inc.fechaHoraInicia == null) {
                 continue;
             }
             Boolean q1 = inc.fechaHoraTermina.isAfter(fechaInicio);
             Boolean q2 = inc.fechaHoraTermina.isBefore(fechaFin);
-            if(q1 && q2) {
+            if (q1 && q2) {
                 inc.toString();
                 System.out.println();
                 total += 1;
@@ -120,10 +119,3 @@ public class Reporte {
         System.out.println("Hay " + total + " incidencias atendidas");
     }
 }
-
-
-
-// sabado
-// total visitantes = 12
-// visitante ID 2
-// nombre 

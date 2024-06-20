@@ -68,7 +68,7 @@ public class AdminGuardaparque extends AdminPersona {
         }
         editarEntidad(gd);
         if (control.confirmar("actualizar fecha de contratacion? (s/n)")) {
-            gd.fechaContratacion = LocalDateTime.now();
+            gd.fechaContratacion = control.ingresoFechaHora("Ingrese nueva fecha y hora (formato: yyyy-MM-dd HH:mm)");
         }
     }
 
@@ -90,4 +90,5 @@ public class AdminGuardaparque extends AdminPersona {
             return false;
         }
     }
+
 }
