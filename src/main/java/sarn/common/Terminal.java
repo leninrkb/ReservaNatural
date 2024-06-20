@@ -21,13 +21,14 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n======================= GESTIÓN DE INCIDENCIAS ===============");
-                System.out.println("1. Listar incidencias                                     (l)");
-                System.out.println("2. Registrar nueva incidencia                             (r)");
-                System.out.println("3. Atender incidencia                                     (a)");
-                System.out.println("4. Salir                                                  (x)");
-                System.out.println("5. Mostrar ayuda                                          (h)");
-                System.out.println("6. Eliminar incidencia                                    (el)");
-                System.out.println("7. Editar incidencia                                      (ed)");
+                System.out.println("1. Listar Incidencias                                     ");
+                System.out.println("2. Registrar nueva Incidencia                             ");
+                System.out.println("3. Atender Incidencia                                     ");
+                System.out.println("4. Salir                                                  ");
+                System.out.println("5. Mostrar ayuda                                          ");
+                System.out.println("6. Eliminar Incidencia                                    ");
+                System.out.println("7. Editar Incidencia                                      ");
+                System.out.println("8. Exportar Datos                                         ");
                 System.out.println("================================================================\n");
             }
 
@@ -74,6 +75,7 @@ public class Terminal {
                     System.out.println("5. h       - Mostrar ayuda");
                     System.out.println("6. el      - Eliminar incidencia");
                     System.out.println("7. ed      - Editar incidencia");
+                    System.out.println("8. ex      - Exportar incidencia");
                     System.out.println("=======================================\n");
                     mostrarMenu = false;
                     break;
@@ -93,8 +95,7 @@ public class Terminal {
                 case "ed":
                 case "7":
                     int idIncidencia = control.ingresoNumero("ID de la incidencia");
-                    Entidad entidadEditada = admin
-                            .editarEntidad(admin.encontrarEntidad(reserva.incidencias, idIncidencia));
+                    Entidad entidadEditada = admin.editarEntidad(admin.encontrarEntidad(reserva.incidencias, idIncidencia));
                     if (entidadEditada != null) {
                         System.out.println("Incidencia editada correctamente.");
                     } else {
@@ -103,7 +104,27 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
+                case "exportar":
+                case "ex":
+                case "8":
+                    exportarIncidencias();
+                    mostrarMenu = false;
+                    break;
+
             }
+        }
+    }
+
+    private void exportarIncidencias() {
+        AdminIncidencia admin = AdminIncidencia.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.incidencias, reserva.visitantes,
+                reserva.guardaparques);
+        if (exportado) {
+            System.out.println("Datos de incidencias exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de incidencias como CSV.");
         }
     }
 
@@ -116,13 +137,13 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n===================== GESTIÓN DE GUARDAPARQUES ================");
-                System.out.println("1. Listar guardaparques                                    (l)");
-                System.out.println("2. Registrar nuevo guardaparque                            (r)");
-                System.out.println("5. Editar guardaparque                                     (r)");
-                System.out.println("3. Salir                                                   (x)");
-                System.out.println("4. Mostrar ayuda                                           (h)");
-                System.out.println("5. Eliminar Guardaparque                                   (el)");
-                System.out.println("6. Editar Guardaparque                                     (ed)");
+                System.out.println("1. Listar Guardaparques                                    ");
+                System.out.println("2. Registrar nuevo Guardaparque                            ");
+                System.out.println("3. Salir                                                   ");
+                System.out.println("4. Mostrar ayuda                                           ");
+                System.out.println("5. Eliminar Guardaparque                                   ");
+                System.out.println("6. Editar Guardaparque                                     ");
+                System.out.println("7. Exportar Datos                                          ");
                 System.out.println("=================================================================\n");
             }
 
@@ -160,6 +181,7 @@ public class Terminal {
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("5. el      - Eliminar guardaparque");
                     System.out.println("6. ed      - Editar guardaparque");
+                    System.out.println("7. ex      - Exportar guardaparque");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -182,7 +204,26 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
+                case "exportar":
+                case "ex":
+                case "7":
+                    exportarGuardaparques();
+                    mostrarMenu = false;
+                    break;
+
             }
+        }
+    }
+
+    private void exportarGuardaparques() {
+        AdminGuardaparque admin = AdminGuardaparque.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.guardaparques);
+        if (exportado) {
+            System.out.println("Datos de guardaparques exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de guardaparques como CSV.");
         }
     }
 
@@ -194,12 +235,13 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n====================== GESTIÓN DE VISITANTES =================");
-                System.out.println("1. Listar visitantes                                      (l)");
-                System.out.println("2. Registrar nuevo visitante                              (r)");
-                System.out.println("3. Salir                                                  (x)");
-                System.out.println("4. Mostrar ayuda                                          (h)");
-                System.out.println("5. Eliminar visitante                                     (el)");
-                System.out.println("6. Editar visitante                                       (ed)");
+                System.out.println("1. Listar Visitantes                                      ");
+                System.out.println("2. Registrar nuevo Visitante                              ");
+                System.out.println("3. Salir                                                  ");
+                System.out.println("4. Mostrar ayuda                                          ");
+                System.out.println("5. Eliminar Visitante                                     ");
+                System.out.println("6. Editar Visitante                                       ");
+                System.out.println("7. Exportar Visitante                                     ");
                 System.out.println("================================================================\n");
             }
 
@@ -238,7 +280,8 @@ public class Terminal {
                     System.out.println("3. x       - Salir");
                     System.out.println("4. h       - Mostrar ayuda");
                     System.out.println("5. el      - Eliminar visitante");
-                    System.out.println("5. ed      - Editar visitante");
+                    System.out.println("6. ed      - Editar visitante");
+                    System.out.println("7. ev      - Exportar visitante");
                     System.out.println("======================================\n");
                     mostrarMenu = false;
                     break;
@@ -260,8 +303,27 @@ public class Terminal {
                     admin.editarEntidad(reserva.visitantes, control.ingresoNumero("ID del visitante"));
                     mostrarMenu = false;
                     break;
+
+                case "exportar visitantes":
+                case "ex":
+                case "7":
+                    exportarVisitantes();
+                    mostrarMenu = false;
+                    break;
             }
 
+        }
+    }
+
+    private void exportarVisitantes() {
+        AdminVisitante admin = AdminVisitante.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitantes);
+        if (exportado) {
+            System.out.println("Datos de visitantes exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de visitantes como CSV.");
         }
     }
 
@@ -274,13 +336,14 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n========================= GESTIÓN DE VISITAS =================");
-                System.out.println("1. Listar visitas                                         (l)");
-                System.out.println("2. Registrar nueva visita                                 (r)");
-                System.out.println("3. Registrar salida de visita                             (rs)");
-                System.out.println("4. Salir                                                  (x)");
-                System.out.println("5. Mostrar ayuda                                          (h)");
-                System.out.println("6. Eliminar visita                                        (el)");
-                System.out.println("7. Editar visita                                          (ed)");
+                System.out.println("1. Listar Visitas                                         ");
+                System.out.println("2. Registrar nueva Visita                                 ");
+                System.out.println("3. Registrar salida de Visita                             ");
+                System.out.println("4. Salir                                                  ");
+                System.out.println("5. Mostrar ayuda                                          ");
+                System.out.println("6. Eliminar Visita                                        ");
+                System.out.println("7. Editar Visita                                          ");
+                System.out.println("8. Exportar Visita                                        ");
                 System.out.println("================================================================\n");
 
             }
@@ -332,6 +395,7 @@ public class Terminal {
                     System.out.println("5. h            - Mostrar ayuda");
                     System.out.println("6. el           - Eliminar visita");
                     System.out.println("7. ed           - Editar visita");
+                    System.out.println("8. ex           - Exportar visita");
                     System.out.println("=============================================\n");
                     mostrarMenu = false;
                     break;
@@ -347,20 +411,39 @@ public class Terminal {
                     mostrarMenu = false;
                     break;
 
-                    case "editar":
-                    case "ed":
-                    case "7":
-                        Integer idVisita = control.ingresoNumero("ID de la visita a editar");
-                        Visita visita = (Visita) admin.encontrarEntidad(reserva.visitas, idVisita);
-                        if (visita != null) {
-                            admin.editarEntidad(visita);
-                            System.out.println("Visita editada con éxito!");
-                        } else {
-                            System.out.println("No se encontró la visita con ID " + idVisita);
-                        }
-                        mostrarMenu = false;
-                        break;
+                case "editar":
+                case "ed":
+                case "7":
+                    Integer idVisita = control.ingresoNumero("ID de la visita a editar");
+                    Visita visita = (Visita) admin.encontrarEntidad(reserva.visitas, idVisita);
+                    if (visita != null) {
+                        admin.editarEntidad(visita);
+                        System.out.println("Visita editada con éxito!");
+                    } else {
+                        System.out.println("No se encontró la visita con ID " + idVisita);
+                    }
+                    mostrarMenu = false;
+                    break;
+
+                case "exportar visitantes":
+                case "ex":
+                case "8":
+                    exportarVisitas();
+                    mostrarMenu = false;
+                    break;
             }
+        }
+    }
+
+    private void exportarVisitas() {
+        AdminVisita admin = AdminVisita.getInstance();
+        String rutaArchivo = control
+                .ingresoTexto("Ingrese el nombre del archivo para exportar los datos: ");
+        boolean exportado = admin.exportarDatos(rutaArchivo, reserva.visitas, reserva.visitantes);
+        if (exportado) {
+            System.out.println("Datos de visitas exportados correctamente.");
+        } else {
+            System.out.println("No se pudo exportar los datos de visitas como CSV.");
         }
     }
 
@@ -371,11 +454,11 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n======================== GENERACIÓN DE REPORTES ==================");
-                System.out.println("1. Reporte de visitantes por día                          (vs d)");
-                System.out.println("2. Reporte de visitas por fecha                           (vs f)");
-                System.out.println("3. Reporte de incidencias por rango de fechas             (vs rf)");
-                System.out.println("4. Salir                                                  (x)");
-                System.out.println("5. Mostrar ayuda                                          (h)");
+                System.out.println("1. Reporte de visitantes por día                          ");
+                System.out.println("2. Reporte de visitas por fecha                           ");
+                System.out.println("3. Reporte de incidencias por rango de fechas             ");
+                System.out.println("4. Salir                                                  ");
+                System.out.println("5. Mostrar ayuda                                          ");
                 System.out.println("====================================================================\n");
             }
 
@@ -446,13 +529,13 @@ public class Terminal {
         while (!salir) {
             if (mostrarMenu) {
                 System.out.println("\n====================== MENÚ PRINCIPAL =================");
-                System.out.println("1. Administrar visitantes                         (v)");
-                System.out.println("2. Administrar visitas                            (vs)");
-                System.out.println("3. Administrar guardaparques                      (g)");
-                System.out.println("4. Administrar incidencias                        (i)");
-                System.out.println("5. Generar reportes                               (r)");
-                System.out.println("6. Salir                                          (x)");
-                System.out.println("7. Mostrar ayuda                                  (h)");
+                System.out.println("1. Administrar visitantes                         ");
+                System.out.println("2. Administrar visitas                            ");
+                System.out.println("3. Administrar guardaparques                      ");
+                System.out.println("4. Administrar incidencias                        ");
+                System.out.println("5. Generar reportes                               ");
+                System.out.println("6. Salir                                          ");
+                System.out.println("7. Mostrar ayuda                                  ");
                 System.out.println("=======================================================\n");
             }
 
@@ -508,11 +591,15 @@ public class Terminal {
                     System.out.println("4. i          - incidencias");
                     System.out.println("5. r          - reportes");
                     System.out.println("6. x          - salir");
-                    System.out.println("7. h          - h");
+                    System.out.println("7. h          - help");
                     System.out.println("=============================\n");
                     mostrarMenu = false;
                     break;
+
             }
+
         }
+
     }
+
 }

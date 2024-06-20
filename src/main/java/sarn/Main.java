@@ -1,4 +1,5 @@
 package sarn;
+
 import sarn.common.Terminal;
 
 public class Main {

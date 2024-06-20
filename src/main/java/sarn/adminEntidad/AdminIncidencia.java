@@ -1,5 +1,7 @@
 package sarn.adminEntidad;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import sarn.common.*;
@@ -98,6 +100,47 @@ public class AdminIncidencia extends AdminEntidad {
         }
 
         return inc;
+    }
+
+    public boolean exportarDatos(String rutaArchivo, List<Entidad> incidencias, List<Entidad> visitantes,
+            List<Entidad> guardaparques) {
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+            // Escribir encabezados CSV
+            writer.write("ID,Visitante,Guardaparque,Fecha Inicio, Fecha Fim,Descripcion,Anotaciones\n");
+
+            // Escribir datos de incidencias
+            for (Entidad entidad : incidencias) {
+                Incidencia i = (Incidencia) entidad;
+                String nombreVisitante = obtenerNombreVisitante(i.idVisitante, visitantes);
+                String nombreGuardaparque = obtenerNombreGuardaparque(i.idGuardaparque, guardaparques);
+                writer.write(String.format("%d,%s,%s,%s,%s,%s,%s\n",
+                        i.id, nombreVisitante, nombreGuardaparque, i.fechaHoraInicia, i.fechaHoraTermina, i.descripcion, i.anotaciones));
+            }
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al exportar los datos de incidencias como CSV: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private String obtenerNombreVisitante(int visitanteId, List<Entidad> visitantes) {
+        for (Entidad entidad : visitantes) {
+            Visitante v = (Visitante) entidad;
+            if (v.id == visitanteId) {
+                return v.nombres;
+            }
+        }
+        return "Desconocido";
+    }
+
+    private String obtenerNombreGuardaparque(int guardaparqueId, List<Entidad> guardaparques) {
+        for (Entidad entidad : guardaparques) {
+            Guardaparque g = (Guardaparque) entidad;
+            if (g.id == guardaparqueId) {
+                return g.nombres;
+            }
+        }
+        return "Desconocido";
     }
 
 }

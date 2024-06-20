@@ -1,5 +1,7 @@
 package sarn.adminEntidad;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import sarn.entidad.*;
 
@@ -40,7 +42,7 @@ public class AdminVisitante extends AdminPersona {
                 break;
             }
         }
-        v.ruc = String.valueOf(this.control.ingresoNumero("ingrese su ruc", opcional));
+        v.pasaporte = String.valueOf(this.control.ingresoNumero("ingrese su pasaporte", opcional));
         llenarEntidad(e);
     }
     
@@ -85,14 +87,34 @@ public class AdminVisitante extends AdminPersona {
             return;
         }
         super.editarEntidad(vt);
-        if(control.confirmar("editar ruc? (s/n)")){
-            vt.ruc = control.ingresoTexto("ruc");
+        if(control.confirmar("editar pasaporte? (s/n)")){
+            vt.pasaporte = control.ingresoTexto("pasaporte");
         }
         if(control.confirmar("editar direccion? (s/n)")){
             vt.direccion = control.ingresoTexto("Direccion");
         }
         if(control.confirmar("editar telefono? (s/n)")){
             vt.telefono = control.ingresoTexto("telefono");
+        }
+    }
+
+    //
+    public boolean exportarDatos(String rutaArchivo, List<Entidad> visitantes) {
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+            // Escribir encabezados CSV
+            writer.write("ID,Nombres,Apellidos,Cédula,Pasaporte,Dirección,Teléfono\n");
+
+            // Escribir datos de visitantes
+            for (Entidad entidad : visitantes) {
+                Visitante v = (Visitante) entidad;
+                writer.write(String.format("%d,%s,%s,%s,%s,%s,%s\n",
+                        v.id, v.nombres, v.apellidos, v.cedula, v.pasaporte, v.direccion, v.telefono));
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al exportar los datos de visitantes como CSV: " + e.getMessage());
+            return false;
         }
     }
 

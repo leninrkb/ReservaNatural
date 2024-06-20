@@ -1,7 +1,7 @@
 package sarn.adminEntidad;
 import java.util.List;
 import sarn.entidad.Entidad;
-import sarn.entidad.Guardaparque;
+//import sarn.entidad.Guardaparque;
 import sarn.entidad.Persona;
 
 public abstract class AdminPersona extends AdminEntidad{

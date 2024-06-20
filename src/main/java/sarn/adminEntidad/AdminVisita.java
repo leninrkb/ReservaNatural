@@ -1,4 +1,7 @@
 package sarn.adminEntidad;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -7,7 +10,9 @@ import sarn.entidad.*;
 
 public class AdminVisita extends AdminEntidad {
     private static AdminVisita clase;
-    private AdminVisita() {}
+
+    private AdminVisita() {
+    }
 
     public static AdminVisita getInstance() {
         if (clase == null) {
@@ -35,7 +40,7 @@ public class AdminVisita extends AdminEntidad {
             System.out.println("no se encontro el visitante con ID " + idVisitante);
             return false;
         }
-        if(vt.enVisita){
+        if (vt.enVisita) {
             System.out.println("El visitante " + vt.nombres + "ya se encuentra dentro de la Reserva");
             return false;
         }
@@ -78,15 +83,45 @@ public class AdminVisita extends AdminEntidad {
     @Override
     public Entidad editarEntidad(Entidad e) {
         Visita v = (Visita) e;
-        
+
         System.out.println("Editando visita ID: " + v.id);
-        
+
         if (control.confirmar("Editar fecha y hora de salida ? (s/n)")) {
             v.fechaHoraTermina = control.ingresoFechaHora("Ingrese nueva fecha y hora (formato: yyyy-MM-dd HH:mm)");
         }
-        
+
         return v;
     }
     
-    
+
+    public boolean exportarDatos(String rutaArchivo, List<Entidad> visitas, List<Entidad> visitantes) {
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+            // Escribir encabezados CSV
+            writer.write("ID,Visitante,Fecha Ingreso,Fecha Salida\n");
+
+            // Escribir datos de visitas
+            for (Entidad entidad : visitas) {
+                Visita v = (Visita) entidad;
+                String nombreVisitante = obtenerNombreVisitante(v.idVisitante, visitantes);
+                writer.write(String.format("%d,%s,%s,%s\n",
+                        v.id, nombreVisitante, v.fechaHoraInicia, v.fechaHoraTermina));
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al exportar los datos de visitas como CSV: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private String obtenerNombreVisitante(int visitanteId, List<Entidad> visitantes) {
+        for (Entidad entidad : visitantes) {
+            Visitante v = (Visitante) entidad;
+            if (v.id == visitanteId) {
+                return v.nombres;
+            }
+        }
+        return "Desconocido";
+    }
+
 }

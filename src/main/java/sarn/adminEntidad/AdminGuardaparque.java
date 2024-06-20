@@ -1,5 +1,7 @@
 package sarn.adminEntidad;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import sarn.entidad.*;
@@ -18,7 +20,7 @@ public class AdminGuardaparque extends AdminPersona {
         return entidad;
     }
 
-    public void llenarEntidad(Entidad e, List<Entidad> entidades){
+    public void llenarEntidad(Entidad e, List<Entidad> entidades) {
         System.out.println();
         System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque gd = (Guardaparque) e;
@@ -60,13 +62,32 @@ public class AdminGuardaparque extends AdminPersona {
 
     public void editarEntidad(List<Entidad> entidades, Integer id) {
         Guardaparque gd = (Guardaparque) encontrarEntidad(entidades, id);
-        if(gd == null){
+        if (gd == null) {
             System.out.println("No se logro encontrar el guardaparque");
             return;
         }
         editarEntidad(gd);
         if (control.confirmar("actualizar fecha de contratacion? (s/n)")) {
             gd.fechaContratacion = LocalDateTime.now();
+        }
+    }
+
+    public boolean exportarDatos(String rutaArchivo, List<Entidad> guardaparques) {
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+            // Escribir encabezados CSV
+            writer.write("ID,Nombres,Apellidos,Cédula, Fecha Contratacion\n");
+
+            // Escribir datos de visitantes
+            for (Entidad entidad : guardaparques) {
+                Guardaparque g = (Guardaparque) entidad;
+                writer.write(String.format("%d,%s,%s,%s,%s\n",
+                        g.id, g.nombres, g.apellidos, g.cedula, g.fechaContratacion));
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al exportar los datos de guardaparques como CSV: " + e.getMessage());
+            return false;
         }
     }
 }
