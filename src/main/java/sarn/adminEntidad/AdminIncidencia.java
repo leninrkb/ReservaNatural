@@ -77,8 +77,7 @@ public class AdminIncidencia extends AdminEntidad {
 
     @Override
     public void llenarEntidad(Entidad entidad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+   
     }
 
     @Override

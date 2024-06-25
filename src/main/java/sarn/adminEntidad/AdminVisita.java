@@ -63,8 +63,7 @@ public class AdminVisita extends AdminEntidad {
 
     @Override
     public void llenarEntidad(Entidad entidad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'llenarEntidad'");
+
     }
 
     public void registrarSalida(ReservaNatural reserva) {
