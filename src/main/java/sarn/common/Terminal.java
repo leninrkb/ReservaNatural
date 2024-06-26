@@ -342,6 +342,8 @@ public class Terminal {
                             reserva.visitas);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
+                    }else{
+                        System.out.println("No se realizo la operacion");
                     }
                     mostrarMenu = false;
                     break;
