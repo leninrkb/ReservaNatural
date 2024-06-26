@@ -14,12 +14,12 @@ public class Visitante extends Persona {
     public String toString() {
         System.out.println(""
                 + "id        => " + this.id + "\n"
-                + "cedula    => " + this.cedula + "\n"
-                + "nombres   => " + this.nombres + "\n"
-                + "apellidos => " + this.apellidos + "\n"
-                + "pasaporte => " + this.pasaporte + "\n"
-                + "direccion => " + this.direccion + "\n"
-                + "telefono  => " + this.telefono);
+                + "cedula    => " + (this.cedula == null ? "###" : this.cedula) + "\n"
+                + "pasaporte => " + (this.pasaporte == null ? "###" : this.pasaporte) + "\n"
+                + "nombres   => " + (this.nombres == null || this.nombres == "" ? "###" : this.nombres) + "\n"
+                + "apellidos => " + (this.apellidos == null || apellidos == "" ? "###" : this.apellidos) + "\n"
+                + "direccion => " + (this.direccion == null || direccion == "" ? "###" : this.direccion) + "\n"
+                + "telefono  => " + (this.telefono == "null" ? "###" : this.telefono) );
         return super.toString();
     }
 }

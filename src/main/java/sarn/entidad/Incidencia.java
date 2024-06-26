@@ -11,10 +11,10 @@ public class Incidencia extends Visita {
                 + "ID                => " + id + "\n"
                 + "ID Guardaparque   => " + idGuardaparque + "\n"
                 + "ID Visitante      => " + idVisitante + "\n"
-                + "Descripcion       => " + descripcion + "\n"
+                + "Descripcion       => " + (descripcion == null ? "###" : descripcion) + "\n"
                 + "Fecha del reporte => " + getFechaHoraInicia() + "\n"
                 + "Fecha de atencion => " + getFechaHoraTermina() + "\n"
-                + "Anotaciones       => " + anotaciones);
+                + "Anotaciones       => " + (anotaciones == null ? "###" : anotaciones));
         return "";
     }
 }

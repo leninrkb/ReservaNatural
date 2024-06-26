@@ -17,9 +17,9 @@ public class Guardaparque extends Persona {
     public String toString() {
         System.out.println(""
                 + "ID                    => " + id + "\n"
-                + "Cedula                => " + cedula + "\n"
-                + "Nombres               => " + nombres + "\n"
-                + "Apellidos             => " + apellidos + "\n"
+                + "Cedula                => " + (cedula == null ? "###" : cedula) + "\n"
+                + "Nombres               => " + (nombres == null ? "###" : nombres) + "\n"
+                + "Apellidos             => " + (apellidos == null ? "###" : apellidos) + "\n"
                 + "Fecha de contratacion => " + getFechaContratacion());
         return super.toString();
     }
