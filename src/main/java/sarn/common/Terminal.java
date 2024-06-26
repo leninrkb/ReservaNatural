@@ -85,6 +85,8 @@ public class Terminal {
                             reserva.incidencias);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
+                    }else{
+                        System.out.println("No se realizo la accion!");
                     }
                     mostrarMenu = false;
                     break;
