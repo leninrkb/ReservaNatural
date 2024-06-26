@@ -31,18 +31,16 @@ public class AdminVisitante extends AdminPersona {
         System.out.println();
         System.out.println("[NUEVO VISITANTE]");
         Visitante v = (Visitante) e;
-        Boolean opcional = true;
-        while(true){
-            v.cedula = this.control.ingresoCedula("ingrese su cedula", opcional);
-            if(v.cedula == null) {
-                opcional = !opcional;
-                break;
+        if(control.confirmar("Tiene cedula? (s/n): ")){
+            while(true){
+                v.cedula = this.control.ingresoCedula("ingrese su cedula", false);
+                if(cedulaUnica(v, visitantes)){
+                    break;
+                }
             }
-            if(cedulaUnica(v, visitantes)){
-                break;
-            }
+        }else{
+            v.pasaporte = String.valueOf(this.control.ingresoNumero("ingrese su pasaporte", false));
         }
-        v.pasaporte = String.valueOf(this.control.ingresoNumero("ingrese su pasaporte", opcional));
         llenarEntidad(e);
     }
     
