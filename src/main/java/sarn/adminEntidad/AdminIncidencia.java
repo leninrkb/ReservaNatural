@@ -77,12 +77,12 @@ public class AdminIncidencia extends AdminEntidad {
 
     @Override
     public void llenarEntidad(Entidad entidad) {
-   
+
     }
 
     @Override
     public Entidad editarEntidad(Entidad e) {
-        if(e == null){
+        if (e == null) {
             return e;
         }
         Incidencia inc = (Incidencia) e;
@@ -113,8 +113,20 @@ public class AdminIncidencia extends AdminEntidad {
             // Escribir datos de incidencias
             for (Entidad entidad : incidencias) {
                 Incidencia i = (Incidencia) entidad;
+
+                // Obtener nombres de visitante y guardaparque
                 String nombreVisitante = obtenerNombreVisitante(i.idVisitante, visitantes);
                 String nombreGuardaparque = obtenerNombreGuardaparque(i.idGuardaparque, guardaparques);
+
+                // Manejo de valores nulos o no encontrados
+                if (nombreVisitante == null) {
+                    nombreVisitante = "Desconocido";
+                }
+                if (nombreGuardaparque == null) {
+                    nombreGuardaparque = "Desconocido";
+                }
+
+                // Escribir línea en el archivo CSV
                 writer.write(String.format("%d,%s,%s,%s,%s,%s,%s\n",
                         i.id, nombreVisitante, nombreGuardaparque, i.fechaHoraInicia, i.fechaHoraTermina, i.descripcion,
                         i.anotaciones));
@@ -126,24 +138,30 @@ public class AdminIncidencia extends AdminEntidad {
         }
     }
 
-    private String obtenerNombreVisitante(int visitanteId, List<Entidad> visitantes) {
+    private String obtenerNombreVisitante(Integer visitanteId, List<Entidad> visitantes) {
+        if (visitanteId == null) {
+            return null;
+        }
         for (Entidad entidad : visitantes) {
             Visitante v = (Visitante) entidad;
-            if (v.id == visitanteId) {
+            if (v.id.equals(visitanteId)) {
                 return v.nombres;
             }
         }
-        return "Desconocido";
+        return null; // Visitante no encontrado
     }
-
-    private String obtenerNombreGuardaparque(int guardaparqueId, List<Entidad> guardaparques) {
+    
+    private String obtenerNombreGuardaparque(Integer guardaparqueId, List<Entidad> guardaparques) {
+        if (guardaparqueId == null) {
+            return null;
+        }
         for (Entidad entidad : guardaparques) {
             Guardaparque g = (Guardaparque) entidad;
-            if (g.id == guardaparqueId) {
+            if (g.id.equals(guardaparqueId)) {
                 return g.nombres;
             }
         }
-        return "Desconocido";
+        return null; // Guardaparque no encontrado
     }
 
 }
