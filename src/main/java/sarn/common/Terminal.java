@@ -139,7 +139,7 @@ public class Terminal {
                 case "r":
                 case "2":
                     Entidad e = admin.nuevaEntidad();
-                    admin.llenarEntidad(e, reserva.guardaparques);
+                    admin.llenarEntidad(e, reserva.guardaparques, reserva.visitantes);
                     admin.registrarEntidad(reserva.guardaparques, e);
                     mostrarMenu = false;
                     break;
@@ -217,7 +217,7 @@ public class Terminal {
                 case "r":
                 case "2":
                     Entidad e = admin.nuevaEntidad();
-                    admin.llenarEntidad(e, reserva.visitantes);
+                    admin.llenarEntidad(e, reserva.visitantes, reserva.guardaparques);
                     admin.registrarEntidad(reserva.visitantes, e);
                     mostrarMenu = false;
                     System.out.println();

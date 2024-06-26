@@ -20,13 +20,13 @@ public class AdminGuardaparque extends AdminPersona {
         return entidad;
     }
 
-    public void llenarEntidad(Entidad e, List<Entidad> entidades) {
+    public void llenarEntidad(Entidad e, List<Entidad> entidades, List<Entidad> visitantes) {
         System.out.println();
         System.out.println("NUEVO GUARDAPARQUE");
         Guardaparque gd = (Guardaparque) e;
         while (true) {
             gd.cedula = this.control.ingresoCedula("ingrese su cedula", false);
-            if (cedulaUnica(gd, entidades)) {
+            if (cedulaUnica(gd, entidades) && cedulaUnica(gd, visitantes)) {
                 break;
             }
         }

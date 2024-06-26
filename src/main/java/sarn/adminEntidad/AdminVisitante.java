@@ -27,14 +27,14 @@ public class AdminVisitante extends AdminPersona {
         return entidad;
     }
 
-    public void llenarEntidad(Entidad e, List<Entidad> visitantes){
+    public void llenarEntidad(Entidad e, List<Entidad> visitantes, List<Entidad> guardaparques){
         System.out.println();
         System.out.println("[NUEVO VISITANTE]");
         Visitante v = (Visitante) e;
         if(control.confirmar("Tiene cedula? (s/n): ")){
             while(true){
                 v.cedula = this.control.ingresoCedula("ingrese su cedula", false);
-                if(cedulaUnica(v, visitantes)){
+                if(cedulaUnica(v, visitantes) && cedulaUnica(v, guardaparques)){
                     break;
                 }
             }
