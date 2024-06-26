@@ -105,7 +105,7 @@ public class Reporte {
         Integer total = 0;
         for (Entidad entidad : entidades) {
             Incidencia inc = (Incidencia) entidad;
-            if (inc.fechaHoraInicia == null) {
+            if (inc.fechaHoraTermina == null) {
                 continue;
             }
             Boolean q1 = inc.fechaHoraTermina.isAfter(fechaInicio);
