@@ -85,7 +85,7 @@ public class Terminal {
                             reserva.incidencias);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
-                    }else{
+                    } else {
                         System.out.println("No se realizo la accion!");
                     }
                     mostrarMenu = false;
@@ -344,7 +344,7 @@ public class Terminal {
                             reserva.visitas);
                     if (eliminado) {
                         System.out.println("Operacion realizada con exito!");
-                    }else{
+                    } else {
                         System.out.println("No se realizo la operacion");
                     }
                     mostrarMenu = false;
@@ -396,10 +396,20 @@ public class Terminal {
                 case "visitas fecha":
                 case "vs f":
                 case "2":
-                    String fecha = control.ingresoTexto("Fecha (yyyy-MM-dd)");
-                    reporte.visitasPorFecha(reserva, fecha);
-                    mostrarMenu = false;
-                    System.out.println();
+                    String fechaInput;
+                    boolean formatoCorrecto = false;
+
+                    while (!formatoCorrecto) {
+                        fechaInput = control.ingresoTexto("Fecha (yyyy-MM-dd)");
+                        if (!fechaInput.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            System.out.println("Debe ingresar la fecha en el formato indicado");
+                        } else {
+                            formatoCorrecto = true;
+                            reporte.visitasPorFecha(reserva, fechaInput);
+                            mostrarMenu = false;
+                            System.out.println();
+                        }
+                    }
                     break;
 
                 case "visitas rango fecha":

@@ -69,14 +69,21 @@ public class AdminVisita extends AdminEntidad {
     public void registrarSalida(ReservaNatural reserva) {
         Integer idVisita = control.ingresoNumero("ID de la visita");
         Visita v = (Visita) encontrarEntidad(reserva.visitas, idVisita);
+
         if (v == null) {
-            System.out.println("No se encontro la visita con ID " + idVisita);
+            System.out.println("No se encontró la visita con ID " + idVisita);
             return;
         }
+
+        if (v.fechaHoraTermina != null) {
+            System.out.println("La salida para la visita con ID " + idVisita + " ya ha sido registrada anteriormente.");
+            return;
+        }
+
         Visitante vt = (Visitante) encontrarEntidad(reserva.visitantes, v.idVisitante);
         vt.cambioEstadoVisita();
         v.fechaHoraTermina = LocalDateTime.now();
-        System.out.println("Salida registrada con exito!");
+        System.out.println("Salida registrada con éxito!");
     }
 
     @Override

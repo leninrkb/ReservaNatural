@@ -31,6 +31,7 @@ public class IOControl {
         String s = in.nextLine();
         return s;
     }
+    
 
     public String ingresoNombres(String msg) {
         while (true) {

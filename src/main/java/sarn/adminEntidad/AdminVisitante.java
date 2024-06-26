@@ -3,6 +3,8 @@ package sarn.adminEntidad;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
+
 import sarn.entidad.*;
 
 public class AdminVisitante extends AdminPersona {
@@ -27,23 +29,35 @@ public class AdminVisitante extends AdminPersona {
         return entidad;
     }
 
-    public void llenarEntidad(Entidad e, List<Entidad> visitantes, List<Entidad> guardaparques){
+    public void llenarEntidad(Entidad e, List<Entidad> visitantes, List<Entidad> guardaparques) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("[NUEVO VISITANTE]");
         Visitante v = (Visitante) e;
-        if(control.confirmar("Tiene cedula? (s/n): ")){
-            while(true){
-                v.cedula = this.control.ingresoCedula("ingrese su cedula", false);
-                if(cedulaUnica(v, visitantes) && cedulaUnica(v, guardaparques)){
-                    break;
+
+        while (true) {
+            System.out.print("Tiene cedula? (s/n): ");
+            String respuesta = scanner.nextLine().trim().toLowerCase();
+
+            if (respuesta.equals("s") || respuesta.equals("n")) {
+                if (respuesta.equals("s")) {
+                    v.cedula = this.control.ingresoCedula("Ingrese su cedula", false);
+                    if (!cedulaUnica(v, visitantes) || !cedulaUnica(v, guardaparques)) {
+                        System.out.println("La cédula ingresada ya está en uso. Intente nuevamente.");
+                        continue;
+                    }
+                } else { 
+                    v.pasaporte = String.valueOf(this.control.ingresoNumero("Ingrese su pasaporte", false));
                 }
+                break;
+            } else {
+                System.out.println("Ingrese solo 's' o 'n'.");
             }
-        }else{
-            v.pasaporte = String.valueOf(this.control.ingresoNumero("ingrese su pasaporte", false));
         }
+
         llenarEntidad(e);
     }
-    
+
     @Override
     public void llenarEntidad(Entidad e) {
         Visitante v = (Visitante) e;
@@ -67,11 +81,11 @@ public class AdminVisitante extends AdminPersona {
     @Override
     public Boolean eliminarEntidad(Integer id, List<Entidad> entidades) {
         Visitante vt = (Visitante) encontrarEntidad(entidades, id);
-        if(vt == null){
+        if (vt == null) {
             System.out.println("No existe nadie con el ID indicado");
             return false;
         }
-        if(!vt.enVisita){
+        if (!vt.enVisita) {
             return super.eliminarEntidad(id, entidades);
         }
         System.out.println("El visitante esta aun dentro de la reserva");
@@ -80,18 +94,18 @@ public class AdminVisitante extends AdminPersona {
 
     public void editarEntidad(List<Entidad> entidades, Integer id) {
         Visitante vt = (Visitante) encontrarEntidad(entidades, id);
-        if(vt == null){
+        if (vt == null) {
             System.out.println("no se encontro al visitante");
             return;
         }
         super.editarEntidad(vt);
-        if(control.confirmar("editar pasaporte? (s/n)")){
+        if (control.confirmar("editar pasaporte? (s/n)")) {
             vt.pasaporte = control.ingresoTexto("pasaporte");
         }
-        if(control.confirmar("editar direccion? (s/n)")){
+        if (control.confirmar("editar direccion? (s/n)")) {
             vt.direccion = control.ingresoTexto("Direccion");
         }
-        if(control.confirmar("editar telefono? (s/n)")){
+        if (control.confirmar("editar telefono? (s/n)")) {
             vt.telefono = control.ingresoTexto("telefono");
         }
     }
@@ -115,6 +129,5 @@ public class AdminVisitante extends AdminPersona {
             return false;
         }
     }
-    
 
 }
