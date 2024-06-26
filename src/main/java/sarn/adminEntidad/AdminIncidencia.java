@@ -82,6 +82,9 @@ public class AdminIncidencia extends AdminEntidad {
 
     @Override
     public Entidad editarEntidad(Entidad e) {
+        if(e == null){
+            return e;
+        }
         Incidencia inc = (Incidencia) e;
 
         System.out.println("Editando incidencia ID: " + inc.id);
